@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
         <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
         <script src="{{ asset('assets/js/config.js') }}"></script>
+        @yield('headscripts')
     </head>
 
     <body>
@@ -50,16 +51,16 @@
                     <div class="menu-inner-shadow"></div>
                     <ul class="menu-inner py-1">
                         <li class="menu-header small">
-                            <span class="menu-header-text" data-i18n="Intranet">Intranet</span>
+                            <span class="menu-header-text" data-i18n=""></span>
                         </li>
-                        <li class="menu-item active">
-                            <a href="index.html" class="menu-link">
+                        <li class="menu-item{{ Route::is('home*') ? ' active' : '' }}">
+                            <a href="{{ route('home') }}" class="menu-link">
                                 <i class="menu-icon icon-base ti tabler-speakerphone"></i>
                                 <div data-i18n="Mural de Avisos">Mural de Avisos</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="page-2.html" class="menu-link">
+                        <li class="menu-item{{ Route::is('telegramas*') ? ' active' : '' }}">
+                            <a href="{{ route('telegramas') }}" class="menu-link">
                                 <i class="menu-icon icon-base ti tabler-building-broadcast-tower"></i>
                                 <div data-i18n="Telegramas">Telegramas</div>
                             </a>
@@ -67,197 +68,216 @@
                         <li class="menu-header small">
                             <span class="menu-header-text" data-i18n="Sistemas">Sistemas</span>
                         </li>
-                        <li class="menu-item" style="">
+                        <li class="menu-item{{ Route::is('sistemas.administracao*') ? ' open' : '' }}" style="">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon icon-base ti tabler-building-bank"></i>
                                 <div data-i18n="Administração">Administração</div>
                             </a>
                             <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="app-logistics-dashboard.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.administracao.funcionarios*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.administracao.funcionarios') }}" class="menu-link">
                                         <div data-i18n="Funcionários">Funcionários</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-fleet.html" class="menu-link">
-                                        <div data-i18n="Almoxarifado">Almoxarifado</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-fleet.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.administracao.autorizacoes*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.administracao.autorizacoes') }}" class="menu-link">
                                         <div data-i18n="Autorizações">Autorizações</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-fleet.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.administracao.calendario*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.administracao.calendario') }}" class="menu-link">
                                         <div data-i18n="Calendário">Calendário</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item{{ Route::is('sistemas.administracao.setores*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.administracao.setores') }}" class="menu-link">
+                                        <div data-i18n="Setores">Setores</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item{{ Route::is('sistemas.administracao.estoque*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.administracao.estoque') }}" class="menu-link">
+                                        <div data-i18n="Almoxarifado">Estoque</div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item" style="">
+                        <li class="menu-item{{ Route::is('sistemas.contabilidade*') ? ' open' : '' }}" style="">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon icon-base ti tabler-scale"></i>
                                 <div data-i18n="Contabilidade">Contabilidade</div>
                             </a>
                             <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="app-logistics-dashboard.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.contabilidade.patrimonio*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.contabilidade.patrimonio') }}" class="menu-link">
                                         <div data-i18n="Patrimônio">Patrimônio</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-fleet.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.contabilidade.folha*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.contabilidade.folha') }}" class="menu-link">
                                         <div data-i18n="Folha de Pagamento">Folha de Pagamento</div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item" style="">
+                        <li class="menu-item{{ Route::is('sistemas.renda*') ? ' open' : '' }}" style="">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon icon-base ti tabler-coin-yen"></i>
                                 <div data-i18n="Renda Consular">Renda Consular</div>
                             </a>
                             <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="app-logistics-dashboard.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.renda.baixa*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.renda.baixa') }}" class="menu-link">
                                         <div data-i18n="Baixa">Baixa</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-fleet.html" class="menu-link">
-                                        <div data-i18n="Relatíos">Relatíos</div>
+                                <li class="menu-item{{ Route::is('sistemas.renda.consultas*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.renda.consultas') }}" class="menu-link">
+                                        <div data-i18n="Consultas">Consultas</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-fleet.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.renda.relatorios*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.renda.relatorios') }}" class="menu-link">
+                                        <div data-i18n="Relatórios">Relatórios</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item{{ Route::is('sistemas.renda.emolumentos*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.renda.emolumentos') }}" class="menu-link">
                                         <div data-i18n="Emolumentos">Emolumentos</div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item" style="">
+                        <li class="menu-item{{ Route::is('sistemas.atendimento*') ? ' open' : '' }}" style="">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon icon-base ti tabler-messages"></i>
                                 <div data-i18n="Atendimento">Atendimento</div>
                             </a>
                             <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="app-logistics-fleet.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.atendimento.cadastros*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.atendimento.cadastros') }}" class="menu-link">
                                         <div data-i18n="Cadastros">Cadastros</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-dashboard.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.atendimento.agendamentos*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.atendimento.agendamentos') }}" class="menu-link">
                                         <div data-i18n="Agendamentos">Agendamentos</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-fleet.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.atendimento.protocolos*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.atendimento.protocolos') }}" class="menu-link">
                                         <div data-i18n="Protocolos">Protocolos</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item{{ Route::is('sistemas.atendimento.whatsapp*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.atendimento.whatsapp') }}" class="menu-link">
+                                        <div data-i18n="WhatsApp">WhatsApp</div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item" style="">
+                        <li class="menu-item{{ Route::is('sistemas.informatica*') ? ' open' : '' }}" style="">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon icon-base ti tabler-device-desktop"></i>
                                 <div data-i18n="Informática">Informática</div>
                             </a>
                             <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="app-logistics-dashboard.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.informatica.computadores*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.informatica.computadores') }}" class="menu-link">
                                         <div data-i18n="Computadores">Computadores</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-fleet.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.informatica.impressoras*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.informatica.impressoras') }}" class="menu-link">
                                         <div data-i18n="Impressoras">Impressoras</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-fleet.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.informatica.acessos*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.informatica.acessos') }}" class="menu-link">
                                         <div data-i18n="Acessos">Acessos</div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item" style="">
+                        <li class="menu-item{{ Route::is('sistemas.assistencia*') ? ' open' : '' }}" style="">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon icon-base ti tabler-heart-handshake"></i>
                                 <div data-i18n="Assistência">Assistência</div>
                             </a>
                             <ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="app-logistics-dashboard.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.assistencia.assistidos*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.assistencia.assistidos') }}" class="menu-link">
                                         <div data-i18n="Assistidos">Assistidos</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-dashboard.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.assistencia.relatorios*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.assistencia.relatorios') }}" class="menu-link">
                                         <div data-i18n="Relatórios">Relatórios</div>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="app-logistics-dashboard.html" class="menu-link">
+                                <li class="menu-item{{ Route::is('sistemas.assistencia.visitas*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.assistencia.visitas') }}" class="menu-link">
                                         <div data-i18n="Visitas">Visitas</div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item" style="">
+                        <li class="menu-item{{ Route::is('sistemas.cultural*') ? ' open' : '' }}" style="">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon icon-base ti tabler-masks-theater"></i>
                                 <div data-i18n="Cultural">Cultural</div>
                             </a>
                             <ul class="menu-sub">
-                                <li class="menu-item">
-                                <a href="app-logistics-dashboard.html" class="menu-link">
-                                    <div data-i18n="Eventos">Eventos</div>
-                                </a>
-                                </li>
-                                <li class="menu-item">
-                                <a href="app-logistics-fleet.html" class="menu-link">
-                                    <div data-i18n="Fleet">Fleet</div>
-                                </a>
+                                <li class="menu-item{{ Route::is('sistemas.cultural.eventos*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.cultural.eventos') }}" class="menu-link">
+                                        <div data-i18n="Eventos">Eventos</div>
+                                    </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="menu-header small">
-                            <span class="menu-header-text" data-i18n="Diversos">Diversos</span>
+                            <span class="menu-header-text" data-i18n="Intranet">Intranet</span>
                         </li>
-                        <li class="menu-item">
-                            <a href="page-2.html" class="menu-link">
+                        <li class="menu-item{{ Route::is('intranet.links*') ? ' active' : '' }}">
+                            <a href="{{ route('intranet.links') }}" class="menu-link">
                                 <i class="menu-icon icon-base ti tabler-link"></i>
                                 <div data-i18n="Links">Links</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="page-2.html" class="menu-link">
+                        <li class="menu-item{{ Route::is('intranet.material*') ? ' active' : '' }}">
+                            <a href="{{ route('intranet.material') }}" class="menu-link">
                                 <i class="menu-icon icon-base ti tabler-shopping-cart"></i>
                                 <div data-i18n="Solicitações">Material</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="page-2.html" class="menu-link">
+                        <li class="menu-item{{ Route::is('intranet.calendario*') ? ' active' : '' }}">
+                            <a href="{{ route('intranet.calendario') }}" class="menu-link">
                                 <i class="menu-icon icon-base ti tabler-calendar-week"></i>
                                 <div data-i18n="Calendário">Calendário</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="page-2.html" class="menu-link">
+                        <li class="menu-item{{ Route::is('intranet.funcionarios*') ? ' active' : '' }}">
+                            <a href="{{ route('intranet.funcionarios') }}" class="menu-link">
+                                <i class="menu-icon icon-base ti tabler-users"></i>
+                                <div data-i18n="Streaming">Funcionários</div>
+                            </a>
+                        </li>
+                        <li class="menu-item{{ Route::is('intranet.streaming*') ? ' active' : '' }}">
+                            <a href="{{ route('intranet.streaming') }}" class="menu-link">
                                 <i class="menu-icon icon-base ti tabler-player-play"></i>
                                 <div data-i18n="Streaming">Streaming CCTV</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="page-2.html" class="menu-link">
+                        <li class="menu-item{{ Route::is('intranet.notas-servico*') ? ' active' : '' }}">
+                            <a href="{{ route('intranet.notas-servico') }}" class="menu-link">
+                                <i class="menu-icon icon-base ti tabler-file-certificate"></i>
+                                <div data-i18n="Notas de Serviço">Notas de Serviço</div>
+                            </a>
+                        </li>
+                        <li class="menu-item{{ Route::is('intranet.mala-diplomatica*') ? ' active' : '' }}">
+                            <a href="{{ route('intranet.mala-diplomatica') }}" class="menu-link">
                                 <i class="menu-icon icon-base ti tabler-briefcase"></i>
                                 <div data-i18n="Mala Diplomática">Mala Diplomática</div>
                             </a>
-                        </li>
-                        <li class="menu-header small">
-                            <span class="menu-header-text" data-i18n=""></span>
                         </li>
                         <li class="menu-item">
                             <a class="menu-link btn-logout" style="cursor: pointer;">
@@ -309,21 +329,26 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="#">
+                                                <i class="icon-base ti tabler-lock icon-md me-3"></i><span>Alterar Senha</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
                                                 <i class="icon-base ti tabler-user-square icon-md me-3"></i><span>Meu Cadastro</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="{{ route('saldos') }}">
                                                 <i class="icon-base ti tabler-chart-bar icon-md me-3"></i><span>Meus Saldos</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="{{ route('ponto') }}">
                                                 <i class="icon-base ti tabler-hand-click icon-md me-3"></i><span>Ponto Digital</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="{{ route('solicitacoes') }}">
                                                 <i class="icon-base ti tabler-arrow-autofit-right icon-md me-3"></i><span>Solicitações</span>
                                             </a>
                                         </li>
@@ -343,11 +368,7 @@
 
                     <div class="content-wrapper">
                         <div class="container-xxl flex-grow-1 container-p-y">
-                            <h4 class="py-4 mb-6">Page 1</h4>
-                            <p>
-                                Sample page.<br />For more layout options use
-                                <a href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation//layouts.html" target="_blank" class="fw-medium">Layout docs</a>.
-                            </p>
+                        @yield('content')
                         </div>
                         <footer class="content-footer footer bg-footer-theme">
                             <div class="container-xxl">
@@ -381,5 +402,6 @@
         <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <script src="{{ asset('assets/js/intranet.js') }}"></script>
+        @yield('scripts')
     </body>
 </html>

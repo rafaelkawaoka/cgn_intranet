@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('password');
+            $table->boolean('is_active')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -24,6 +25,28 @@ return new class extends Migration
         User::create([
             'name' => "Rafael Kawaoka",
             'username' => "rafael.kawaoka",
+            'is_active' => true,
+            'password' => bcrypt('123456')
+        ]);
+
+        User::create([
+            'name' => "Usuário teste 1",
+            'username' => "user.teste1",
+            'is_active' => true,
+            'password' => bcrypt('123456')
+        ]);
+
+        User::create([
+            'name' => "Usuário teste 2",
+            'username' => "user.teste2",
+            'is_active' => false,
+            'password' => bcrypt('123456')
+        ]);
+
+        User::create([
+            'name' => "Usuário teste 3",
+            'username' => "user.teste3",
+            'is_active' => false,
             'password' => bcrypt('123456')
         ]);
 
