@@ -173,6 +173,11 @@
                                         <div data-i18n="WhatsApp">WhatsApp</div>
                                     </a>
                                 </li>
+                                <li class="menu-item{{ Route::is('sistemas.atendimento.material*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.atendimento.material') }}" class="menu-link">
+                                        <div data-i18n="Material">Material</div>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="menu-item{{ Route::is('sistemas.informatica*') ? ' open' : '' }}" style="">
@@ -234,6 +239,19 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="menu-item{{ Route::is('sistemas.midias*') ? ' open' : '' }}" style="">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon icon-base ti tabler-brand-instagram"></i>
+                                <div data-i18n="Cultural">Mídias</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item{{ Route::is('sistemas.midias.canais*') ? ' active' : '' }}">
+                                    <a href="{{ route('sistemas.midias.canais') }}" class="menu-link">
+                                        <div data-i18n="Canais">Canais</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="menu-header small">
                             <span class="menu-header-text" data-i18n="Intranet">Intranet</span>
                         </li>
@@ -241,12 +259,6 @@
                             <a href="{{ route('intranet.links') }}" class="menu-link">
                                 <i class="menu-icon icon-base ti tabler-link"></i>
                                 <div data-i18n="Links">Links</div>
-                            </a>
-                        </li>
-                        <li class="menu-item{{ Route::is('intranet.material*') ? ' active' : '' }}">
-                            <a href="{{ route('intranet.material') }}" class="menu-link">
-                                <i class="menu-icon icon-base ti tabler-shopping-cart"></i>
-                                <div data-i18n="Solicitações">Material</div>
                             </a>
                         </li>
                         <li class="menu-item{{ Route::is('intranet.calendario*') ? ' active' : '' }}">
@@ -350,6 +362,11 @@
                                         <li>
                                             <a class="dropdown-item" href="{{ route('solicitacoes') }}">
                                                 <i class="icon-base ti tabler-arrow-autofit-right icon-md me-3"></i><span>Solicitações</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('intranet.material') }}">
+                                                <i class="icon-base ti tabler-pencil-star icon-md me-3"></i><span>Material</span>
                                             </a>
                                         </li>
                                         <li>

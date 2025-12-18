@@ -32,6 +32,7 @@ Route::prefix('sistemas')->name('sistemas.')->group(function () {
         Route::get('/agendamentos', [App\Http\Controllers\SistemasAtendimentoAgendamentosController::class, 'index'])->name('agendamentos');
         Route::get('/protocolos', [App\Http\Controllers\SistemasAtendimentoProtocolosController::class, 'index'])->name('protocolos');
         Route::get('/whatsapp', [App\Http\Controllers\SistemasAtendimentoWhatsAppController::class, 'index'])->name('whatsapp');
+        Route::get('/material', [App\Http\Controllers\SistemasAtendimentoMaterialController::class, 'index'])->name('material');
     });
 
     Route::prefix('contabilidade')->name('contabilidade.')->group(function () {
@@ -39,8 +40,12 @@ Route::prefix('sistemas')->name('sistemas.')->group(function () {
         Route::get('/folha', [App\Http\Controllers\SistemasContabilidadeFolhaController::class, 'index'])->name('folha');
     });
 
-     Route::prefix('cultural')->name('cultural.')->group(function () {
+    Route::prefix('cultural')->name('cultural.')->group(function () {
         Route::get('/eventos', [App\Http\Controllers\SistemasCulturalEventosController::class, 'index'])->name('eventos');
+    });
+
+    Route::prefix('midias')->name('midias.')->group(function () {
+        Route::get('/canais', [App\Http\Controllers\SistemasMidiasCanaisController::class, 'index'])->name('canais');
     });
 
     Route::prefix('informatica')->name('informatica.')->group(function () {
