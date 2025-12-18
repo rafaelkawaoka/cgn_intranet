@@ -314,6 +314,30 @@
                         </div>
                         <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
                             <ul class="navbar-nav flex-row align-items-center ms-md-auto">
+                                <li class="nav-item dropdown-notifications navbar-dropdown dropdown" title="Fila de impressão">
+                                    <a class="nav-link btn btn-icon btn-text-secondary rounded-pill waves-effect" href="javascript:void(0);">
+                                        <span class="position-relative">
+                                            <i class="icon-base ti tabler-printer icon-22px text-heading"></i>
+                                            <span class="badge rounded-pill bg-danger badge-dot badge-notifications border"></span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown-notifications navbar-dropdown dropdown" title="Telegramas">
+                                    <a class="nav-link btn btn-icon btn-text-secondary rounded-pill waves-effect" href="javascript:void(0);">
+                                        <span class="position-relative">
+                                            <i class="icon-base ti tabler-building-broadcast-tower icon-22px text-heading"></i>
+                                            <span class="badge rounded-pill bg-danger badge-dot badge-notifications border"></span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2" title="Solicitações">
+                                    <a class="nav-link btn btn-icon btn-text-secondary rounded-pill waves-effect" href="javascript:void(0);">
+                                        <span class="position-relative">
+                                            <i class="icon-base ti tabler-arrow-autofit-right icon-22px text-heading"></i>
+                                            <span class="badge rounded-pill bg-danger badge-dot badge-notifications border"></span>
+                                        </span>
+                                    </a>
+                                </li>
                                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                     <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);" data-bs-toggle="dropdown">
                                         <div class="avatar avatar-online">
