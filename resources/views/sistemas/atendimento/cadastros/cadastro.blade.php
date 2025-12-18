@@ -4,7 +4,12 @@
 <div class="row">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
         <div class="d-flex flex-column justify-content-center">
-            <h4 class="mb-1">Matrícula Consular</h4>
+            <h4 class="mb-1">
+                <a href="" class="text-body">
+                    <i class="icon-base ti tabler-circle-arrow-left icon-22px mb-1"></i>
+                </a>
+                Matrícula Consular
+            </h4>
             <p class="mb-0">Gerenciamento de matrícula consular</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-4">
@@ -23,7 +28,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-2">
                     <div class="avatar me-4">
-                        <span class="avatar-initial rounded bg-label-success"><i class="icon-base ti tabler-calendar-plus icon-28px"></i></span>
+                        <span class="avatar-initial rounded bg-label-success"><i class="icon-base ti tabler-phone-call icon-28px"></i></span>
                     </div>
                     <h4 class="mb-0">
                         <span id="stats_a">
@@ -33,10 +38,9 @@
                         </span>
                     </h4>
                 </div>
-                <p class="mb-1">Cadastro</p>
+                <p class="mb-1">Telefones</p>
                 <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
+                    <small class="text-body-secondary">Atualização: 00/00/0000</small>
                 </p>
             </div>
         </div>
@@ -46,7 +50,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-2">
                     <div class="avatar me-4">
-                        <span class="avatar-initial rounded bg-label-danger"><i class="icon-base ti tabler-calendar-repeat icon-28px"></i></span>
+                        <span class="avatar-initial rounded bg-label-danger"><i class="icon-base ti tabler-directions icon-28px"></i></span>
                     </div>
                     <h4 class="mb-0">
                         <span id="stats_b">
@@ -56,10 +60,9 @@
                         </span>
                     </h4>
                 </div>
-                <p class="mb-1">Atualização</p>
+                <p class="mb-1">Endereços</p>
                 <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
+                    <small class="text-body-secondary">Atualização: 00/00/0000</small>
                 </p>
             </div>
         </div>
@@ -81,8 +84,7 @@
                 </div>
                 <p class="mb-1">Serviços</p>
                 <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
+                    <small class="text-body-secondary">Atualização: 00/00/0000</small>
                 </p>
             </div>
         </div>
@@ -104,8 +106,7 @@
                 </div>
                 <p class="mb-1">Protocolos</p>
                 <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
+                    <small class="text-body-secondary">Atualização: 00/00/0000</small>
                 </p>
             </div>
         </div>
@@ -166,6 +167,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-cadastro" role="tabpanel">
                         <h5>Dados Cadastrais</h5>
+                        <hr>
                         <div class="row mb-6">
                             <div class="col-md-9">
                                 <label class="form-label" for="basic-default-fullname">Nome Completo:</label>
@@ -265,33 +267,37 @@
                                 </button>
                             </div>
                         </div>
+                        <hr>
                         <div class="row mb-6">
                             <div class="col-md-12">
                                 <div class="table-responsive text-nowrap">
                                     <table class="table table-bordered table-sm">
                                         <thead>
-                                            <tr>
-                                                <th>Nome Completo</th>
-                                                <th class="col-md-2 text-center">Nascimento</th>
-                                                <th class="col-md-2 text-center">Matrícula</th>
-                                                <th class="col-md-2 text-center">Actions</th>
+                                            <tr class="bg-label-secondary">
+                                                <th class="col-md-6 text-start" style="padding: 8px">Nome Completo</th>
+                                                <th class="col-md-2 text-center" style="padding: 8px">Nascimento</th>
+                                                <th class="col-md-2 text-center" style="padding: 8px">Matrícula</th>
+                                                <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>
-                                                    <span class="fw-medium">Nome do Cadastro</span>
+                                                <td class="text-start" style="padding: 5px; padding-left: 10px">
+                                                    Fulano Fulano da Silva Sauro e Sauro
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center" style="padding: 5px">
                                                     00/00/0000
                                                 </td>
-                                                <td class="text-center">
-                                                    JPN123456789
+                                                <td class="text-center" style="padding: 5px">
+                                                    00/00/0000
                                                 </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-text-primary rounded-pill waves-effect btn-icon" title="Ver cadastro"><i class="icon-base ti tabler-id icon-22px"></i></button>
-                                                    <button class="btn btn-text-primary rounded-pill waves-effect btn-icon" title="Desvincular"><i class="icon-base ti tabler-unlink icon-22px"></i></button>
+                                                <td class="text-center" style="padding: 5px">
+                                                    <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Ver cadastro"><i class="icon-base ti tabler-id icon-22px"></i></button>
+                                                    <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Remover vínculo"><i class="icon-base ti tabler-unlink icon-22px"></i></button>
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" colspan="4" style="padding: 30px">Nenhum cadastro vinculado.</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -307,78 +313,37 @@
                                 </button>
                             </div>
                         </div>
+                        <hr>
                         <div class="row mb-9">
                             <div class="col-md-12">
                                 <div class="table-responsive text-nowrap">
                                     <table class="table table-bordered table-sm">
                                         <thead>
-                                            <tr>
-                                                <th>Nome Completo</th>
-                                                <th class="col-md-2 text-center">Nascimento</th>
-                                                <th class="col-md-2 text-center">Matrícula</th>
-                                                <th class="col-md-2 text-center">Actions</th>
+                                            <tr class="bg-label-secondary">
+                                                <th class="col-md-6 text-start" style="padding: 8px">Nome Completo</th>
+                                                <th class="col-md-2 text-center" style="padding: 8px">Nascimento</th>
+                                                <th class="col-md-2 text-center" style="padding: 8px">Matrícula</th>
+                                                <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>
-                                                    <span class="fw-medium">Nome do Cadastro</span>
+                                                <td class="text-start" style="padding: 5px; padding-left: 10px">
+                                                    Fulano Fulano da Silva Sauro e Sauro
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center" style="padding: 5px">
                                                     00/00/0000
                                                 </td>
-                                                <td class="text-center">
-                                                    JPN123456789
+                                                <td class="text-center" style="padding: 5px">
+                                                    00/00/0000
                                                 </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-text-primary rounded-pill waves-effect btn-icon" title="Ver cadastro"><i class="icon-base ti tabler-id icon-22px"></i></button>
-                                                    <button class="btn btn-text-primary rounded-pill waves-effect btn-icon" title="Desvincular"><i class="icon-base ti tabler-unlink icon-22px"></i></button>
+                                                <td class="text-center" style="padding: 5px">
+                                                    <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Ver cadastro"><i class="icon-base ti tabler-id icon-22px"></i></button>
+                                                    <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Remover vínculo"><i class="icon-base ti tabler-unlink icon-22px"></i></button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>
-                                                    <span class="fw-medium">Nome do Cadastro</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    00/00/0000
-                                                </td>
-                                                <td class="text-center">
-                                                    JPN123456789
-                                                </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-text-primary rounded-pill waves-effect btn-icon" title="Ver cadastro"><i class="icon-base ti tabler-id icon-22px"></i></button>
-                                                    <button class="btn btn-text-primary rounded-pill waves-effect btn-icon" title="Desvincular"><i class="icon-base ti tabler-unlink icon-22px"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="fw-medium">Nome do Cadastro</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    00/00/0000
-                                                </td>
-                                                <td class="text-center">
-                                                    JPN123456789
-                                                </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-text-primary rounded-pill waves-effect btn-icon" title="Ver cadastro"><i class="icon-base ti tabler-id icon-22px"></i></button>
-                                                    <button class="btn btn-text-primary rounded-pill waves-effect btn-icon" title="Desvincular"><i class="icon-base ti tabler-unlink icon-22px"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="fw-medium">Nome do Cadastro</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    00/00/0000
-                                                </td>
-                                                <td class="text-center">
-                                                    JPN123456789
-                                                </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-text-primary rounded-pill waves-effect btn-icon" title="Ver cadastro"><i class="icon-base ti tabler-id icon-22px"></i></button>
-                                                    <button class="btn btn-text-primary rounded-pill waves-effect btn-icon" title="Desvincular"><i class="icon-base ti tabler-unlink icon-22px"></i></button>
-                                                </td>
+                                                <td class="text-center" colspan="4" style="padding: 30px">Nenhum cadastro vinculado.</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -387,23 +352,427 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-documentos" role="tabpanel">
-                        <h5>Documentos</h5>
-                        <p>Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream cheesecake fruitcake.</p>
-                        <p class="mb-0">Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah cotton candy liquorice caramels.</p>
+                        <h5>Documentação</h5>
+                        <hr>
+                        <div class="row mb-6">
+                            <div class="col-md-3">
+                                <label class="form-label" for="basic-default-fullname">CPF:</label>
+                                <input type="text" class="form-control" id="" name="" value="">
+                            </div>
+                        </div>
+                        <div class="row mb-6">
+                            <div class="col-md-2">
+                                <label class="form-label" for="basic-default-fullname">Identidade:</label>
+                                <select class="form-select" id="" name="">
+                                    <option selected="">Selecione...</option>
+                                    <option value="CIN">CIN</option>
+                                    <option value="RG">RG</option>
+                                    <option value="RNE">RNE</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="basic-default-fullname">Número do documento:</label>
+                                <input type="text" class="form-control" id="" name="" value="">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label" for="basic-default-fullname">Órgão emissor:</label>
+                                <input type="text" class="form-control" id="" name="" value="">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="basic-default-fullname">Data de emissão:</label>
+                                <input type="date" class="form-control" id="" name="" value="" max="{{ date('Y-m-d') }}">
+                            </div>
+                        </div>
+                        <div class="row mb-6">
+                            <div class="col-md-3">
+                                <label class="form-label" for="basic-default-fullname">Título de eleitor:</label>
+                                <input type="text" class="form-control" id="" name="" value="">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label" for="basic-default-fullname">Seção eleitoral:</label>
+                                <input type="text" class="form-control" id="" name="" value="">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label" for="basic-default-fullname">Zona eleitoral:</label>
+                                <input type="text" class="form-control" id="" name="" value="">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="basic-default-fullname">Local de votação:</label>
+                                <select class="form-select" id="" name="">
+                                    <option selected="">Selecione...</option>
+                                    <option value="">Exterior - Nagoia</option>
+                                    <option value="">Exterior - Toyohashi</option>
+                                    <option value="">Exterior - Suzuka</option>
+                                    <option value="">Exterior - Hiroshima</option>
+                                    <option value="">Exterior - Toyama</option>
+                                    <option value="">Exterior - Japão Outros</option>
+                                    <option value="">Exterior - Outros</option>
+                                    <option value="">Território Nacional</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-9">
+                            <div class="col-md-3">
+                                <label class="form-label" for="basic-default-fullname">Zayriu card:</label>
+                                <input type="text" class="form-control" id="" name="" value="">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="basic-default-fullname">Habilitação japonesa:</label>
+                                <input type="text" class="form-control" id="" name="" value="">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="basic-default-fullname">Passaporte estrangeiro:</label>
+                                <input type="text" class="form-control" id="" name="" value="">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="basic-default-fullname">Passaporte estrangeiro validade:</label>
+                                <input type="date" class="form-control" id="" name="" value="">
+                            </div>
+                        </div>
+                        <hr class="mt-4 pb-4">
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Passaportes</h5>
+                            <div class="card-header-elements ms-auto">
+                                <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                    <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr class="bg-label-secondary">
+                                        <th class="col-md-2 text-center" style="padding: 8px">Número</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Expedidor</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Validade</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Status</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center" style="padding: 5px">
+                                            FD987512
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            NAGOIA CG
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            00/00/0000
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            <span class="badge bg-label-success me-1">Válido</span>
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Editar"><i class="icon-base ti tabler-edit icon-22px"></i></button>
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Excluir"><i class="icon-base ti tabler-trash icon-22px"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" colspan="5" style="padding: 30px">Nenhum passaporte cadastrado.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr class="mt-4 pb-4">
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Digitalizações</h5>
+                            <div class="card-header-elements ms-auto">
+                                <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                    <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr class="bg-label-secondary">
+                                        <th class="text-center" style="padding: 8px">Tipo de documento</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Data Upload</th>
+                                        <th class="text-center" style="padding: 8px">Funcionário</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center" style="padding: 5px">
+                                            Declaração Consular de Estado Civil
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            00/00/0000 00:00
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            Nome do Funcionário que fez upload
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Visualizar"><i class="icon-base ti tabler-photo icon-22px"></i></button>
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Excluir"><i class="icon-base ti tabler-trash icon-22px"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" colspan="5" style="padding: 30px">Nenhum documento digitalizado.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="tab-contatos" role="tabpanel">
-                        <h5>Contatos</h5>
-                        <p>Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies cupcake gummi bears cake chocolate.</p>
-                        <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Números de telefone</h5>
+                            <div class="card-header-elements ms-auto">
+                                <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                    <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr class="bg-label-secondary">
+                                        <th class="col-md-2 text-center" style="padding: 8px">Número</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Tipo</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Cadastrado</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Atualizado</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center" style="padding: 5px">
+                                            00 0000-0000
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            Celular
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            00/00/0000 00:00
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            00/00/0000 00:00
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Confirmar"><i class="icon-base ti tabler-square-check icon-22px"></i></button>
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Editar"><i class="icon-base ti tabler-edit icon-22px"></i></button>
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Excluir"><i class="icon-base ti tabler-trash icon-22px"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" colspan="5" style="padding: 30px">Nenhum telefone cadastrado.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr class="mt-4 pb-4">
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Endereços eletrônicos</h5>
+                            <div class="card-header-elements ms-auto">
+                                <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                    <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr class="bg-label-secondary">
+                                        <th class="text-center" style="padding: 8px">Endereço Eletrônico</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Cadastrado</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Atualizado</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center" style="padding: 5px">
+                                            fulanofulanofulano@provedor.com.br
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            00/00/0000 00:00
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            00/00/0000 00:00
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Confirmar"><i class="icon-base ti tabler-square-check icon-22px"></i></button>
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Editar"><i class="icon-base ti tabler-edit icon-22px"></i></button>
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Excluir"><i class="icon-base ti tabler-trash icon-22px"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" colspan="5" style="padding: 30px">Nenhum endereço eletrônico cadastrado.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr class="mt-4 pb-4">
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Contatos de emergência</h5>
+                            <div class="card-header-elements ms-auto">
+                                <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                    <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr class="bg-label-secondary">
+                                        <th class="text-center" style="padding: 8px">Nome</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Telefone</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Cadastrado</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Atualizado</th>
+                                        <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center" style="padding: 5px">
+                                            Fulando Fulano da Silva Sauro e Sauro
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            (11) 99999-9999
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            00/00/0000 00:00
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            00/00/0000 00:00
+                                        </td>
+                                        <td class="text-center" style="padding: 5px">
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Confirmar"><i class="icon-base ti tabler-square-check icon-22px"></i></button>
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Editar"><i class="icon-base ti tabler-edit icon-22px"></i></button>
+                                            <button class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Excluir"><i class="icon-base ti tabler-trash icon-22px"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" colspan="5" style="padding: 30px">Nenhum contato de emergência cadastrado.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr class="mt-4 pb-4">
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Observações</h5>
+                            <div class="card-header-elements ms-auto"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea class="form-control" id="" name="" rows="8"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="tab-enderecos" role="tabpanel">
-                        <h5>Endereços</h5>
-                        <p>Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies cupcake gummi bears cake chocolate.</p>
-                        <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Endereços no Japão</h5>
+                            <div class="card-header-elements ms-auto">
+                                <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                    <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        @for ($i = 0; $i < 3; $i++)
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="card shadow-none border rounded">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3 pb-1">
+                                            <a href="javascript:;" class="d-flex align-items-center">
+                                                <div class="avatar me-2 bg-label-primary border rounded">
+                                                    <i class="icon-base ti tabler-map-pin icon-32px" style="margin-left:4px; margin-top:2px"></i>
+                                                </div>
+                                                <div class="d-flex flex-column">
+                                                    <h6 class="mb-0">Aichi-ken, Nagoya-shi</h6>
+                                                    <small class="text-body d-block">Endereço Atual</small>
+                                                </div>
+                                            </a>
+                                            <div class="ms-auto">
+                                            <ul class="list-inline mb-0 d-flex align-items-center">
+                                                <li class="list-inline-item me-0">
+                                                    <a href="javascript:void(0);" class="d-flex align-self-center btn btn-icon rounded-pill waves-effect" title="Definir padrão"><i class="icon-base ti tabler-star icon-22px text-body-secondary"></i></a>
+                                                </li>
+                                                <li class="list-inline-item me-0">
+                                                    <a href="javascript:void(0);" class="d-flex align-self-center btn btn-icon rounded-pill waves-effect" title="Imprimir"><i class="icon-base ti tabler-printer icon-22px text-body-secondary"></i></a>
+                                                </li>
+                                                <li class="list-inline-item me-0">
+                                                    <a href="javascript:void(0);" class="d-flex align-self-center btn btn-icon rounded-pill waves-effect" title="Editar"><i class="icon-base ti tabler-edit icon-22px text-body-secondary"></i></a>
+                                                </li>
+                                                <li class="list-inline-item me-0">
+                                                    <a href="javascript:void(0);" class="d-flex align-self-center btn btn-icon rounded-pill waves-effect" title="Excluir"><i class="icon-base ti tabler-trash icon-22px text-body-secondary"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <p class="mb-3 pb-1">
+                                            Aichi-ken, Nagoya-shi<br>
+                                            Naka-ku, Marunouchi 1-10-29<br>
+                                            Shirakawa 8th BLDG 2F<br>
+                                            〒460-0011
+                                        </p>
+                                        <hr>
+                                        <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <small>Cadastrado: 00/00/0000 00:00 <br>Atualizado: 00/00/0000 00:00</small>
+                                            </div>
+                                            <div class="ms-auto">
+                                            <a href="javascript:;"><span class="badge bg-label-success">Padrão</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endfor
+                        <hr>
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Endereços no Brasil</h5>
+                            <div class="card-header-elements ms-auto">
+                                <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                    <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card shadow-none border rounded">
+                                    <div class="card-body text-center">
+                                        <p class="card-text py-10">Nenhum endereço cadastrado.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Outros Endereços</h5>
+                            <div class="card-header-elements ms-auto">
+                                <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                    <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card shadow-none border rounded">
+                                    <div class="card-body text-center">
+                                        <p class="card-text py-10">Nenhum endereço cadastrado.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="tab-servicos" role="tabpanel">
                         <h5>Serviços</h5>
-                        <div class="accordion accordion-custom-button mt-3" id="accordionCustom">
+                        <hr>
+                        <div class="accordion accordion-custom-button mt-3 mb-3" id="accordionCustom">
+                            @for ($a = 0; $a < 10; $a++)
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingCustomOne">
                                     <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionCustomOne" aria-expanded="false" aria-controls="accordionCustomOne">
@@ -516,81 +885,72 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingCustomTwo">
-                                    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionCustomTwo" aria-expanded="false" aria-controls="accordionCustomTwo">
-                                    Accordion Item 2
-                                    </button>
-                                </h2>
-                                <div id="accordionCustomTwo" class="accordion-collapse collapse" aria-labelledby="headingCustomTwo" data-bs-parent="#accordionCustom">
-                                    <div class="accordion-body">
-                                    Dessert ice cream donut oat cake jelly-o pie sugar plum cheesecake. Bear claw dragée oat cake
-                                    dragée ice cream halvah tootsie roll. Danish cake oat cake pie macaroon tart donut gummies.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingCustomThree">
-                                    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionCustomThree" aria-expanded="false" aria-controls="accordionCustomThree">
-                                    Accordion Item 3
-                                    </button>
-                                </h2>
-                                <div id="accordionCustomThree" class="accordion-collapse collapse" aria-labelledby="headingCustomThree" data-bs-parent="#accordionCustom">
-                                    <div class="accordion-body">
-                                    Oat cake toffee chocolate bar jujubes. Marshmallow brownie lemon drops cheesecake. Bonbon
-                                    gingerbread marshmallow sweet jelly beans muffin. Sweet roll bear claw candy canes oat cake
-                                    dragée caramels.
+                            @endfor
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card shadow-none border rounded">
+                                    <div class="card-body text-center">
+                                        <p class="card-text py-10">Nenhum registro de serviço requerido.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-saldos" role="tabpanel">
-                        <h5>Saldo: JPY 000.000</h5>
-                        <div class="table-responsive text-nowrap border rounded">
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Extrato de Pagamentos</h5>
+                            <div class="card-header-elements ms-auto">
+                                <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                    <span class="icon-base ti tabler-printer icon-xs me-1"></span>Imprimir
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="table-responsive text-nowrap">
                             <table class="table table-striped table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Movimentação</th>
-                                        <th class="text-center">Data</th>
-                                        <th class="text-center">Funcionário</th>
-                                        <th class="text-end">Valor</th>
-                                        <th class="text-end">Saldo</th>
+                                <thead class="border-0">
+                                    <tr class="bg-label-primary">
+                                        <th style="padding: 8px; padding-left: 20px">Movimentação</th>
+                                        <th style="padding: 8px" class="text-center">Data</th>
+                                        <th style="padding: 8px" class="text-center">Funcionário</th>
+                                        <th style="padding: 8px" class="text-end">Valor</th>
+                                        <th style="padding: 8px; padding-left: 10px" class="text-end">Saldo</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0 table-border-top-0">
                                     <tr>
-                                        <td>
+                                        <td style="padding: 5px; padding-left: 20px">
                                             <span class="fw-medium">Depósito Bancário</span>
                                         </td>
-                                        <td class="text-center">
+                                        <td style="padding: 5px" class="text-center">
                                             00/00/0000
                                         </td>
-                                        <td class="text-center">
+                                        <td style="padding: 5px" class="text-center">
                                             Nome do Funcionário
                                         </td>
-                                        <td class="text-end">
+                                        <td style="padding: 5px" class="text-end">
                                             <span class="text-success">000.000 C</span>
                                         </td>
-                                        <td class="text-end">
+                                        <td style="padding: 5px; padding-right:10px" class="text-end">
                                             000.000 C
                                         </td>
                                     </tr>
                                     @for ($i = 0; $i < 25; $i++)
                                     <tr>
-                                        <td>
+                                        <td style="padding: 5px; padding-left: 20px">
                                             <span class="fw-medium">Nome ou descrição do emolumento</span>
                                         </td>
-                                        <td class="text-center">
+                                        <td style="padding: 5px" class="text-center">
                                             00/00/0000
                                         </td>
-                                        <td class="text-center">
+                                        <td style="padding: 5px" class="text-center">
                                             Nome do Funcionário
                                         </td>
-                                        <td class="text-end">
+                                        <td style="padding: 5px" class="text-end">
                                             <span class="text-danger">00.000 D</span>
                                         </td>
-                                        <td class="text-end">
+                                        <td style="padding: 5px; padding-right:10px" class="text-end">
                                             000.000 C
                                         </td>
                                     </tr>
@@ -598,17 +958,67 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card shadow-none border rounded">
+                                    <div class="card-body text-center">
+                                        <p class="card-text py-10">Nenhum registro de pagamentos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="tab-anotacoes" role="tabpanel">
-                        <h5>Anotações</h5>
-                        <p>Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies cupcake gummi bears cake chocolate.</p>
-                        <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                        <div class="card-header header-elements mb-4">
+                            <h5 class="mb-0 me-2">Anotações</h5>
+                            <div class="card-header-elements ms-auto">
+                                <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                    <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        @for ($i = 0; $i < 3; $i++)
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <div class="card-body border rounded">
+                                    <div class="d-flex align-items-center mb-3 pb-1 p-5">
+                                        <div class="avatar me-2">
+                                            <img class="rounded-circle border" src="{{ asset('assets/img/placeholders/user_placeholder.jpg') }}" alt="Avatar">
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-0">Nome do Funcionário</h6>
+                                            <small class="text-body d-block">Qua, 17 Dez 2025 00:00h</small>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <ul class="list-inline mb-0 d-flex align-items-center">
+                                                <li class="list-inline-item me-0">
+                                                    <a href="javascript:void(0);" class="d-flex align-self-center btn btn-icon btn-text-secondary rounded-pill waves-effect" title="Excluir"><i class="icon-base ti tabler-trash icon-22px text-body-secondary"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="border rounded mx-4 my-3 pb-0 p-3 bg-label-warning">
+                                        <p class="pt-2">Curabitur varius ipsum felis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque nec sapien nec felis facilisis convallis et id erat. Morbi blandit ornare bibendum. Suspendisse potenti. Fusce eget mauris facilisis, venenatis nisl a, mollis nunc. Sed vestibulum libero id magna placerat imperdiet.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endfor
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card shadow-none border rounded">
+                                    <div class="card-body text-center">
+                                        <p class="card-text py-10">Nenhuma anotação incluída.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between pt-6">
                     <div class="">
                         <button type="reset" class="btn btn-label-primary waves-effect">Imprimir</button>
-                        <button type="reset" class="btn btn-label-primary waves-effect ms-2">Anotação</button>
                     </div>
                     <button type="submit" class="btn btn-primary me-4 waves-effect waves-light">Salvar</button>
                 </div>
@@ -620,7 +1030,7 @@
             <div class="card-body pt-12">
                 <div class="user-avatar-section">
                     <div class=" d-flex align-items-center flex-column">
-                        <img class="img-fluid rounded mb-4" src="{{ asset('assets/img/avatars/1.png') }}" height="250" width="250" alt="User avatar">
+                        <img class="img-fluid rounded border mb-4" src="{{ asset('assets/img/placeholders/user_placeholder.jpg') }}" height="250" width="250" alt="User avatar">
                         <div class="user-info text-center">
                             <span class="badge bg-label-secondary">JPN123456789</span>
                         </div>

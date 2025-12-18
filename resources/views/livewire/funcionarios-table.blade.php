@@ -20,7 +20,7 @@
                                 <div class="avatar-wrapper me-3 rounded-2 bg-label-secondary">
                                     <a href="{{ route('sistemas.administracao.funcionarios.funcionario', (['id' => $funcionario->id])) }}">
                                         <div class="avatar">
-                                            <img src="../../assets/img/ecommerce-images/product-16.png" alt="Product-8" class="rounded">
+                                            <img src="{{ asset('assets/img/placeholders/user_placeholder.jpg') }}" alt="Product-8" class="rounded border">
                                         </div>
                                     </a>
                                 </div>

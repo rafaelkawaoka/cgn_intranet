@@ -4,7 +4,12 @@
 <div class="row">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
         <div class="d-flex flex-column justify-content-center">
-            <h4 class="mb-1">Cadastros</h4>
+            <h4 class="mb-1">
+                <a href="{{ route('sistemas.atendimento.cadastros') }}" class="text-body">
+                    <i class="icon-base ti tabler-id icon-22px mb-1"></i>
+                </a>
+                Cadastros
+            </h4>
             <p class="mb-0">Gerenciamento de matrícula consular</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-4">
@@ -163,7 +168,7 @@
                                     <div class="avatar-wrapper">
                                         <div class="me-4 border rounded">
                                             <a href="#">
-                                                <img src="../../assets/img/products/iphone.png" alt="User" class="rounded" width="46">
+                                                <img src="{{ asset('assets/img/placeholders/user_placeholder.jpg') }}" alt="User" class="rounded" width="46">
                                             </a>
                                         </div>
                                     </div>

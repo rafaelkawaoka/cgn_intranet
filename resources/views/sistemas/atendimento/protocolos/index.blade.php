@@ -4,7 +4,12 @@
 <div class="row">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
         <div class="d-flex flex-column justify-content-center">
-            <h4 class="mb-1">Protocolos</h4>
+            <h4 class="mb-1">
+                <a href="{{ route('sistemas.atendimento.protocolos') }}" class="text-body">
+                    <i class="icon-base ti tabler-phone-call icon-22px mb-1"></i>
+                </a>
+                Protocolos
+            </h4>
             <p class="mb-0">Gerenciamento de matrícula consular</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-4">

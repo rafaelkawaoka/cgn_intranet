@@ -5,7 +5,7 @@
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
         <div class="d-flex flex-column justify-content-center">
             <h4 class="mb-1">Calendário Geral</h4>
-            <p class="mb-0">Gerenciamento de matrícula consular</p>
+            <p class="mb-0">Visualização do calendário gerencial</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-4">
             <button type="submit" class="btn btn-primary waves-effect waves-light">Nova publicação</button>
@@ -13,95 +13,93 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-3 col-sm-6">
-        <div class="card card-border-shadow-success h-100">
-            <div class="card-body">
-                <div class="d-flex align-items-center mb-2">
-                    <div class="avatar me-4">
-                        <span class="avatar-initial rounded bg-label-success"><i class="icon-base ti tabler-calendar-month icon-28px"></i></span>
-                    </div>
-                    <h4 class="mb-0">
-                        <span id="stats_a">
-                            <div class="spinner-border spinner-border-sm text-secondary" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </span>
-                    </h4>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header header-elements">
+                <h5 class="mb-0 me-2">Dezembro de 2025</h5>
+                <div class="card-header-elements ms-auto">
+                    <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                        <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                    </button>
                 </div>
-                <p class="mb-1">Esta semana</p>
-                <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
-                </p>
             </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card card-border-shadow-danger h-100">
             <div class="card-body">
-                <div class="d-flex align-items-center mb-2">
-                    <div class="avatar me-4">
-                        <span class="avatar-initial rounded bg-label-danger"><i class="icon-base ti tabler-calendar-week icon-28px"></i></span>
-                    </div>
-                    <h4 class="mb-0">
-                        <span id="stats_b">
-                            <div class="spinner-border spinner-border-sm text-secondary" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </span>
-                    </h4>
-                </div>
-                <p class="mb-1">Este mês</p>
-                <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
-                </p>
+                <div class="table-calendar">
+                <table class="border"  style="min-width: 100%">
+                    <tbody>
+                        <tr style="height: 35px">
+                            <th class="text-center text-white bg-primary">Gabinete (2)</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Segunda-Feira">01</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Terça-Feira">02</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Quarta-Feira">03</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Quinta-Feira">04</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Sexta-Feira">05</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Sábado">06</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Domingo">07</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Segunda-Feira">08</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Terça-Feira">09</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Quarta-Feira">10</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Quinta-Feira">11</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Sexta-Feira">12</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Sábado">13</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Domingo">14</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Segunda-Feira">15</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Terça-Feira">16</th>
+                            <th class="tg-0lax text-center text-white bg-warning" style="width: 35px; border: 1px solid #dededf" title="Quarta-Feira">17</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Quinta-Feira">18</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Sexta-Feira">19</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Sábado">20</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Domingo">21</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Segunda-Feira">22</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Terça-Feira">23</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Quarta-Feira">24</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Quinta-Feira">25</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Sexta-Feira">26</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Sábado">27</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Domingo">28</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Segunda-Feira">29</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Terça-Feira">30</th>
+                            <th class="tg-0lax text-center text-white bg-primary" style="width: 35px; border: 1px solid #dededf" title="Quarta-Feira">31</th>
+                        </tr>
+                        @for ($i = 0; $i < 42; $i++)
+                        <tr style="height: 35px;">
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;" class="ps-3">Nome do Funcionário</td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                            <td style="border: 1px solid #dededf; border-spacing: 1px;"></td>
+                        </tr>
+                        @endfor
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card card-border-shadow-secondary h-100">
-            <div class="card-body">
-                <div class="d-flex align-items-center mb-2">
-                    <div class="avatar me-4">
-                        <span class="avatar-initial rounded bg-label-secondary"><i class="icon-base ti tabler-calendar-stats icon-28px"></i></span>
-                    </div>
-                    <h4 class="mb-0">
-                        <span id="stats_c">
-                            <div class="spinner-border spinner-border-sm text-secondary" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </span>
-                    </h4>
-                </div>
-                <p class="mb-1">Este ano</p>
-                <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card card-border-shadow-primary h-100">
-            <div class="card-body">
-                <div class="d-flex align-items-center mb-2">
-                    <div class="avatar me-4">
-                        <span class="avatar-initial rounded bg-label-primary"><i class="icon-base ti tabler-users icon-28px"></i></span>
-                    </div>
-                    <h4 class="mb-0">
-                        <span id="stats_d">
-                            <div class="spinner-border spinner-border-sm text-secondary" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </span>
-                    </h4>
-                </div>
-                <p class="mb-1">Total</p>
-                <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
-                </p>
             </div>
         </div>
     </div>
