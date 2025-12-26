@@ -85,16 +85,4 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('assets/vendor/libs/quill/quill.js') }}"></script>
-<script>
-  const toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],
-  ];
-  const quill = new Quill('#publicacao_conteudo', {
-    theme: 'snow',
-    modules: {
-      toolbar: toolbarOptions
-    }
-  });
-</script>
 @endsection
