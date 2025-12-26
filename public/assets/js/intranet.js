@@ -14,3 +14,45 @@ $(document).on('click', '.btn-logout', function (e) {
         }
     });
 });
+
+document.addEventListener('livewire:init', () => {
+
+    const notyf = new Notyf({
+        duration: 3500,
+        position: {
+            x: 'right',
+            y: 'bottom',
+        },
+        ripple: true,
+        dismissible: true,
+    });
+
+    Livewire.on('notify', ({ type = 'success', message }) => {
+        if (!message) return;
+        if (type === 'error') {
+            notyf.error(message);
+        } else if (type === 'warning') {
+            notyf.open({
+                type: 'warning',
+                message: message,
+                background: '#f59e0b',
+            });
+        } else {
+            notyf.success(message);
+        }
+    });
+
+    Livewire.on('open-modal', ({ id }) => {
+        const el = document.getElementById(id)
+        if (!el) return
+        const modal = bootstrap.Modal.getInstance(el) || new bootstrap.Modal(el)
+        modal.show()
+    })
+
+    Livewire.on('close-modal', ({ id }) => {
+        const modalEl = document.getElementById(id)
+        if (!modalEl) return
+        const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl)
+        modal.hide()
+    })
+})

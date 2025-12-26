@@ -120,6 +120,7 @@ class MuralNovaPublicacao extends Component
         $this->resetForm();
         $this->dispatch('mural-post-created', id: $post->id);
         $this->dispatch('close-modal', id: 'modal-nova-publicacao');
+        $this->dispatch('notify', type: 'success', message: 'Mensagem publicada.');
     }
 
     public function resetForm(): void

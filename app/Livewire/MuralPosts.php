@@ -78,7 +78,8 @@ class MuralPosts extends Component
         $post = MuralPost::findOrFail($postId);
 
         if (!$this->isOwnerPost($post)) {
-            abort(403);
+            $this->dispatch('notify', type: 'error', message: 'Acesso negado.');
+            return;
         }
 
         $this->selectedPostId = $postId;
@@ -95,7 +96,8 @@ class MuralPosts extends Component
         $post = MuralPost::findOrFail($this->selectedPostId);
 
         if (!$this->isOwnerPost($post)) {
-            abort(403);
+            $this->dispatch('notify', type: 'error', message: 'Acesso negado.');
+            return;
         }
 
         $this->validate([
@@ -114,17 +116,18 @@ class MuralPosts extends Component
         ]);
 
         $this->dispatch('close-modal', id: 'modal-editar-post');
+        $this->dispatch('notify', type: 'success', message: 'Alterações salvas.');
     }
 
     public function deletePost(int $postId): void
     {
         $post = MuralPost::findOrFail($postId);
-
         if (!$this->isOwnerPost($post)) {
-            abort(403);
+            $this->dispatch('notify', type: 'error', message: 'Acesso negado.');
+            return;
         }
-
         $post->delete();
+        $this->dispatch('notify', type: 'success', message: 'Publicação excluída.');
     }
 
     public function voteYes(int $postId): void
@@ -140,24 +143,18 @@ class MuralPosts extends Component
     private function vote(int $postId, bool $yes): void
     {
         $uid = $this->uid();
-
         $post = MuralPost::findOrFail($postId);
-
         if ((string) $post->modalidade !== '2') {
             return;
         }
-
         if ((bool) $post->enquete_end) {
             return; // enquete encerrada: não aceita voto
         }
-
         $yesArr = $post->users_vote_yes ?? [];
         $noArr  = $post->users_vote_no ?? [];
-
         if (in_array($uid, $yesArr, true) || in_array($uid, $noArr, true)) {
             return;
         }
-
         $yes
             ? $yesArr[] = $uid
             : $noArr[] = $uid;
@@ -166,13 +163,15 @@ class MuralPosts extends Component
             'users_vote_yes' => array_values(array_unique($yesArr)),
             'users_vote_no'  => array_values(array_unique($noArr)),
         ]);
+        $this->dispatch('notify', type: 'success', message: 'Voto registrado.');
     }
 
     public function endPoll(int $postId): void
     {
         $post = MuralPost::findOrFail($postId);
         if (!$this->isOwnerPost($post)) {
-            abort(403);
+            $this->dispatch('notify', type: 'error', message: 'Acesso negado.');
+            return;
         }
         if ((string) $post->modalidade !== '2') {
             return;
@@ -181,26 +180,24 @@ class MuralPosts extends Component
             return;
         }
         $post->update(['enquete_end' => 1]);
+        $this->dispatch('notify', type: 'success', message: 'Enquete encerrada.');
     }
 
     public function markCiente(int $postId): void
     {
         $uid = $this->uid();
-
         $post = MuralPost::findOrFail($postId);
-
         if ((string) $post->modalidade !== '1') {
             return;
         }
-
         $arr = $post->users_cientes ?? [];
-
         if (!in_array($uid, $arr, true)) {
             $arr[] = $uid;
             $post->update([
                 'users_cientes' => array_values(array_unique($arr)),
             ]);
         }
+        $this->dispatch('notify', type: 'success', message: 'Declarado ciente.');
     }
 
     public function addComment(): void
@@ -208,14 +205,13 @@ class MuralPosts extends Component
         $this->validate([
             'commentText' => ['required', 'string', 'max:5000'],
         ]);
-
         MuralPostComment::create([
             'post_id' => $this->selectedPostId,
             'funcionario_id' => $this->uid(),
             'comentario' => $this->commentText,
         ]);
-
         $this->commentText = '';
+        $this->dispatch('notify', type: 'success', message: 'Comentário adicionado.');
     }
 
     public function deleteComment(int $commentId): void
@@ -223,16 +219,16 @@ class MuralPosts extends Component
         $comment = MuralPostComment::findOrFail($commentId);
 
         if ((int) $comment->funcionario_id !== $this->uid()) {
-            abort(403);
+            $this->dispatch('notify', type: 'error', message: 'Acesso negado.');
+            return;
         }
-
         $comment->delete();
+        $this->dispatch('notify', type: 'success', message: 'Comentário excluído.');
     }
 
     private function queryVigentes()
     {
         $today = Carbon::today()->toDateString();
-
         return MuralPost::query()
             ->whereNull('deleted_at')
             ->where(function ($q) use ($today) {
