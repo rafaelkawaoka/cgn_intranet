@@ -446,6 +446,13 @@
         @yield('scripts')
         <script>
         document.addEventListener('livewire:init', () => {
+            Livewire.on('open-modal', ({ id }) => {
+                const el = document.getElementById(id)
+                if (!el) return
+                const modal = bootstrap.Modal.getInstance(el) || new bootstrap.Modal(el)
+                modal.show()
+            })
+
             Livewire.on('close-modal', ({ id }) => {
                 const modalEl = document.getElementById(id)
                 if (!modalEl) return

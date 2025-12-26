@@ -83,13 +83,13 @@
                         </div>
                         <div class="col-8">
                             <label class="form-label" for="publicacao_link_url">Link Externo:</label>
-                            <input type="text" id="publicacao_link_url" class="form-control @error('link_externo') is-invalid @enderror" wire:model.defer="link_externo" placeholder="https://...">
+                            <input type="text" id="publicacao_link_url" class="form-control @error('link_externo') is-invalid @enderror" wire:model.defer="link_externo">
                             @error('link_externo') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="publicacao_link_title">Nome do Link:</label>
-                            <input type="text" id="publicacao_link_title" class="form-control @error('link_tile') is-invalid @enderror" wire:model.defer="link_tile" placeholder="Ex: Abrir documento">
-                            @error('link_tile') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            <input type="text" id="publicacao_link_title" class="form-control @error('link_title') is-invalid @enderror" wire:model.defer="link_title">
+                            @error('link_title') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-primary me-3" wire:loading.attr="disabled">

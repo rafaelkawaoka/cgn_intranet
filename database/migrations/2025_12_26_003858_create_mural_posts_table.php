@@ -22,13 +22,14 @@ return new class extends Migration
             $table->string('titulo')->nullable();
             $table->longtext('conteudo')->nullable();
             $table->string('link_externo')->nullable();
-            $table->string('link_tile')->nullable();
+            $table->string('link_title')->nullable();
             $table->json('users_cientes')->default(json_encode([]));
             $table->json('users_vote_yes')->default(json_encode([]));
             $table->json('users_vote_no')->default(json_encode([]));
             $table->boolean('enquete_end')->default(0);
             $table->boolean('published_teams')->default(0);
             $table->softDeletes();
+            $table->datetime('edited_at')->nullable();
             $table->timestamps();
         });
     }

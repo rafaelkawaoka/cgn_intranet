@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,12 +20,13 @@ class MuralPost extends Model
         'titulo',
         'conteudo',
         'link_externo',
-        'link_tile',
+        'link_title',
         'users_cientes',
         'users_vote_yes',
         'users_vote_no',
         'enquete_end',
         'published_teams',
+        'edited_at',
     ];
 
     protected $casts = [
@@ -35,6 +37,7 @@ class MuralPost extends Model
         'users_vote_no'    => 'array',
         'enquete_end'      => 'boolean',
         'published_teams'  => 'boolean',
+        'edited_at' => 'datetime',
     ];
 
     protected $attributes = [
@@ -60,13 +63,26 @@ class MuralPost extends Model
         });
     }
 
+    private function usersByIds(array $ids)
+    {
+        if (empty($ids)) {
+            return collect();
+        }
+        return User::query()->whereIn('id', $ids)->orderBy('name')->get(['id', 'name']);
+    }
+
     public function attachments()
     {
         return $this->hasMany(MuralPostAttachment::class, 'post_id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\MuralPostComment::class, 'post_id');
+    }
+
     public function funcionario()
     {
-        return $this->belongsTo(Funcionario::class, 'funcionario_id');
+        return $this->belongsTo(User::class, 'funcionario_id');
     }
 }

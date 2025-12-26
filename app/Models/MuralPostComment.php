@@ -3,28 +3,29 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class MuralPostAttachment extends Model
+class MuralPostComment extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'mural_post_comments';
+
     protected $fillable = [
         'post_id',
-        'file_name',
-        'file_url',
-        'file_extension',
-        'file_size',
-        'download_count',
-    ];
-
-    protected $attributes = [
-        'download_count' => 0,
+        'funcionario_id',
+        'comentario',
     ];
 
     public function post()
     {
         return $this->belongsTo(MuralPost::class, 'post_id');
     }
+
+    public function funcionario()
+    {
+        return $this->belongsTo(User::class, 'funcionario_id');
+    }
 }
+

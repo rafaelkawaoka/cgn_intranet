@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mural_post_attachments', function (Blueprint $table) {
+        Schema::create('mural_post_comments', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('post_id')->unsigned();
             $table->foreign('post_id')->references('id')->on('mural_posts');
-            $table->string('file_name');
-            $table->string('file_url');
-            $table->string('file_extension');
-            $table->string('file_size');
-            $table->integer('download_count');
+            $table->bigInteger('funcionario_id')->unsigned();
+            $table->foreign('funcionario_id')->references('id')->on('users');
+            $table->longtext('comentario')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mural_post_attachments');
+        Schema::dropIfExists('mural_post_comments');
     }
 };
