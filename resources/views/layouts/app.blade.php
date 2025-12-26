@@ -315,6 +315,30 @@
                         </div>
                         <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
                             <ul class="navbar-nav flex-row align-items-center ms-md-auto">
+                                <li class="nav-item dropdown-notifications navbar-dropdown dropdown" title="Autorizações">
+                                    <a class="nav-link btn btn-icon btn-text-secondary rounded-pill waves-effect" href="javascript:void(0);">
+                                        <span class="position-relative">
+                                            <i class="icon-base ti tabler-gavel icon-22px text-heading"></i>
+                                            <span class="badge rounded-pill bg-danger badge-dot badge-notifications border"></span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown-notifications navbar-dropdown dropdown" title="Material consular">
+                                    <a class="nav-link btn btn-icon btn-text-secondary rounded-pill waves-effect" href="javascript:void(0);">
+                                        <span class="position-relative">
+                                            <i class="icon-base ti tabler-certificate icon-22px text-heading"></i>
+                                            <span class="badge rounded-pill bg-danger badge-dot badge-notifications border"></span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown-notifications navbar-dropdown dropdown" title="Entrega de material">
+                                    <a class="nav-link btn btn-icon btn-text-secondary rounded-pill waves-effect" href="javascript:void(0);">
+                                        <span class="position-relative">
+                                            <i class="icon-base ti tabler-shopping-cart icon-22px text-heading"></i>
+                                            <span class="badge rounded-pill bg-danger badge-dot badge-notifications border"></span>
+                                        </span>
+                                    </a>
+                                </li>
                                 <li class="nav-item dropdown-notifications navbar-dropdown dropdown" title="Fila de impressão">
                                     <a class="nav-link btn btn-icon btn-text-secondary rounded-pill waves-effect" href="javascript:void(0);">
                                         <span class="position-relative">
