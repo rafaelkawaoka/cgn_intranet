@@ -444,5 +444,15 @@
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <script src="{{ asset('assets/js/intranet.js') }}"></script>
         @yield('scripts')
+        <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('close-modal', ({ id }) => {
+                const modalEl = document.getElementById(id)
+                if (!modalEl) return
+                const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl)
+                modal.hide()
+            })
+        })
+        </script>
     </body>
 </html>
