@@ -168,14 +168,14 @@
                                             <small class="text-body d-block">
                                                 {{ $c->nascimento?->format('d/m/Y') ?? 'Sem informações' }}
                                                 {{ $c->nascimento ? "(".calcularIdade($c->nascimento).")" : null }}
-                                                {{ $c->sexo ?? '--' }}
+                                                <span class="badge bg-label-secondary ms-1 px-2">{{ $c->sexo ?? '--' }}</span>
                                             </small>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <small class="text-body d-block">Pai: Fulano de Tal da Silva</small>
-                                    <small class="text-body d-block">Mãe: Beltrana de Tal da Silva</small>
+                                    <small class="text-body d-block">Fulano de Tal da Silva</small>
+                                    <small class="text-body d-block">Beltrana de Tal da Silva</small>
                                 </td>
                                 <td class="text-center">
                                     <small class="text-body d-block">{{ $c->matricula }}</small>
@@ -183,7 +183,7 @@
                                         CPF: {{ $c->cpf ? substr($c->cpf,0,3).'.***.***-'.substr($c->cpf,-2) : '--' }}
                                     </small>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <small class="text-body d-block">{{ $c->provincia->provincia ?? '--' }}</small>
                                     <small class="text-body d-block">{{ $c->cidade->cidade ?? '--' }}</small>
                                 </td>
