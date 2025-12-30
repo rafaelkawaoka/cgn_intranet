@@ -13,7 +13,55 @@
             <p class="mb-0">Gerenciamento de matrícula consular</p>
         </div>
         <div class="d-flex align-content-center flex-wrap gap-4">
-            <button type="submit" class="btn btn-primary waves-effect waves-light">Novo cadastro</button>
+            <button type="submit" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal-cadastro">Novo cadastro</button>
+            <div class="modal fade" id="modal-cadastro" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel1">Novo Cadastro</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mb-4">
+                                <div class="col-4">
+                                    <label for="cadastro_cpf" class="form-label">CPF:</label>
+                                    <input type="text" id="cadastro_cpf" class="form-control mask-cpf">
+                                </div>
+                                <div class="col">
+                                    <label for="cadastro_nome" class="form-label">Nome completo:<span class="text-danger">*</span></label>
+                                    <input type="text" id="cadastro_nome" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row g-4 mb-4">
+                                <div class="col mb-0">
+                                    <label for="cadastro_nascimento" class="form-label">Nascimento</label>
+                                    <input type="date" id="cadastro_nascimento" max="{{ date('Y-m-d') }}" class="form-control"/>
+                                </div>
+                                <div class="col mb-0">
+                                    <label for="cadastro_sexo" class="form-label">Sexo:<span class="text-danger">*</span></label>
+                                    <select id="cadastro_sexo" class="form-select">
+                                        <option>Selecione...</option>
+                                        <option value="F">Feminino</option>
+                                        <option value="M">Masculino</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="cadastro_telefone" class="form-label">Celular:</label>
+                                    <input type="text" id="cadastro_telefone" class="form-control mask-celular"/>
+                                </div>
+                                <div class="col-12">
+                                    <label for="cadastro_email" class="form-label">Email:</label>
+                                    <input type="email" id="cadastro_email" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary">Concluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -34,10 +82,6 @@
                     </h4>
                 </div>
                 <p class="mb-1">Esta semana</p>
-                <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
-                </p>
             </div>
         </div>
     </div>
@@ -57,10 +101,6 @@
                     </h4>
                 </div>
                 <p class="mb-1">Este mês</p>
-                <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
-                </p>
             </div>
         </div>
     </div>
@@ -80,10 +120,6 @@
                     </h4>
                 </div>
                 <p class="mb-1">Este ano</p>
-                <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
-                </p>
             </div>
         </div>
     </div>
@@ -103,10 +139,6 @@
                     </h4>
                 </div>
                 <p class="mb-1">Total</p>
-                <p class="mb-0">
-                    <span class="text-heading fw-medium me-2">+18.2%</span>
-                    <small class="text-body-secondary">than last week</small>
-                </p>
             </div>
         </div>
     </div>
@@ -115,22 +147,27 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Pesquisa de cadastros</h5>
-                <div class="d-flex justify-content-between align-items-center row pt-8 gap-4 gap-md-0">
-                    <div class="col-md-6">
-                        <label for="search_name" class="form-label">Nome do consulente:</label>
-                        <input type="text" class="form-control" name="search_name" id="search_name" placeholder="Nome do consulente">
+                <h5 class="card-title mb-0">Pesquisa de cadastros (0)</h5>
+                <div class="row pt-8">
+                    <div class="col">
+                        <label for="search_cpf" class="form-label">CPF:</label>
+                        <input type="text" class="form-control mask-cpf" name="search_cpf">
                     </div>
-                    <div class="col-md-2">
-                        <label for="search_nascimento" class="form-label">Data de nascimento:</label>
-                        <input type="date" class="form-control" name="search_nascimento">
+                    <div class="col-5">
+                        <label for="search_name" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" name="search_name" id="search_name">
                     </div>
-                    <div class="col-md-2">
-                        <label for="search_matricula" class="form-label">Número da matrícula:</label>
+                    <div class="col">
+                        <label for="search_email" class="form-label">Celular:</label>
+                        <input type="text" class="form-control mask-celular" name="search_email">
+                    </div>
+                    <div class="col">
+                        <label for="search_matricula" class="form-label">Matrícula:</label>
                         <input type="text" class="form-control" name="search_matricula">
                     </div>
-                    <div class="d-grid gap-2 col-md-2 mx-auto">
-                        <button type="submit" class="btn btn-primary btn-block waves-effect waves-light mt-6" id="btnNovo">Pesquisar</button>
+                    <div class="col">
+                        <label for="search_nascimento" class="form-label">Nascimento:</label>
+                        <input type="date" class="form-control" max="{{ date('Y-m-d') }}" name="search_nascimento">
                     </div>
                 </div>
             </div>
@@ -138,7 +175,7 @@
                 <table class="dt-route-vehicles table dataTable dtr-column">
                     <thead>
                         <tr>
-                            <th data-dt-column="2" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc dt-ordering-asc" aria-sort="ascending" aria-label="location: Activate to invert sorting" tabindex="0">
+                            <th class="col-4">
                                 Cadastro
                                 <span class="dt-column-order"></span>
                             </th>
@@ -148,6 +185,10 @@
                             </th>
                             <th class="text-center">
                                 Matrícula
+                                <span class="dt-column-order"></span>
+                            </th>
+                            <th>
+                                Localidade
                                 <span class="dt-column-order"></span>
                             </th>
                             <th class="text-center">
@@ -188,6 +229,12 @@
                                 <div class="text-body text-center">
                                     <small class="text-body d-block">JPN123456789</small>
                                     <small class="text-body d-block">CPF: 123.4**.**9-09</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-body text-center">
+                                    <small class="text-body d-block">Província</small>
+                                    <small class="text-body d-block">Cidade</small>
                                 </div>
                             </td>
                             <td>

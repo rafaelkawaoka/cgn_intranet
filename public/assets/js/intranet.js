@@ -15,6 +15,11 @@ $(document).on('click', '.btn-logout', function (e) {
     });
 });
 
+ $(document).ready(function(){
+    $('.mask-cpf').mask('000.000.000-00');
+    $('.mask-celular').mask('(000) 0000-0000');
+});
+
 document.addEventListener('livewire:init', () => {
 
     const notyf = new Notyf({

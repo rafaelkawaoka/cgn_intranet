@@ -39,9 +39,6 @@
                     </h4>
                 </div>
                 <p class="mb-1">Telefones</p>
-                <p class="mb-0">
-                    <small class="text-body-secondary">Atualização: 00/00/0000</small>
-                </p>
             </div>
         </div>
     </div>
@@ -61,9 +58,6 @@
                     </h4>
                 </div>
                 <p class="mb-1">Endereços</p>
-                <p class="mb-0">
-                    <small class="text-body-secondary">Atualização: 00/00/0000</small>
-                </p>
             </div>
         </div>
     </div>
@@ -83,9 +77,6 @@
                     </h4>
                 </div>
                 <p class="mb-1">Serviços</p>
-                <p class="mb-0">
-                    <small class="text-body-secondary">Atualização: 00/00/0000</small>
-                </p>
             </div>
         </div>
     </div>
@@ -105,9 +96,6 @@
                     </h4>
                 </div>
                 <p class="mb-1">Protocolos</p>
-                <p class="mb-0">
-                    <small class="text-body-secondary">Atualização: 00/00/0000</small>
-                </p>
             </div>
         </div>
     </div>
