@@ -70,6 +70,18 @@ document.addEventListener('livewire:init', () => {
         }
     });
 
+    Livewire.on('set-city-after-load', ({ cidadeId }) => {
+        setTimeout(() => {
+            const select = document.querySelector(
+                '#modal-cadastro select[wire\\:model="cidade_id"]'
+            );
+            if (!select) return;
+
+            select.value = cidadeId;
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+        }, 50); // 50ms é suficiente
+    });
+
     Livewire.on('open-modal', ({ id }) => {
         const el = document.getElementById(id)
         if (!el) return

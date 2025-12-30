@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->string('nome')->nullable();
+            $table->string('sexo')->nullable();
+            $table->date('nascimento')->nullable();
+            $table->string('matricula')->unique();
+            //documentos
+            $table->string('cpf')->nullable()->unique();
+            //contatos
+            $table->string('telefone_celular')->nullable();
+            $table->string('telefone_fixo')->nullable();
+            $table->string('email')->nullable();
+            //localização
+            $table->bigInteger('provincia_id')->unsigned()->nullable();
+            $table->foreign('provincia_id')->references('id')->on('japan_provinces');
+            $table->bigInteger('cidade_id')->unsigned()->nullable();
+            $table->foreign('cidade_id')->references('id')->on('japan_cities');
             $table->timestamps();
         });
     }

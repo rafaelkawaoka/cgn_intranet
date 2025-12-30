@@ -14,7 +14,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
     @if ($paginator->hasPages())
         <nav class="d-flex justify-items-center justify-content-between">
             <div class="d-flex justify-content-between flex-fill d-sm-none">
-                <ul class="pagination">
+                <ul class="pagination pagination-rounded">
                     {{-- Previous Page Link --}}
                     @if ($paginator->onFirstPage())
                         <li class="page-item disabled" aria-disabled="true">
@@ -41,7 +41,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 
             <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
                 <div>
-                    <p class="small text-muted">
+                    <p class="text-body-secondary mb-5">
                         Exibindo de
                         <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
                         até
@@ -53,7 +53,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                 </div>
 
                 <div>
-                    <ul class="pagination">
+                    <ul class="pagination pagination-rounded">
                         {{-- Previous Page Link --}}
                         @if ($paginator->onFirstPage())
                             <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
