@@ -314,6 +314,18 @@
                             </a>
                         </div>
                         <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
+                            <span class="badge bg-label-primary d-inline-flex align-items-start" title="Hoje">
+                                <i class="icon-base ti tabler-calendar-week icon-md"></i>
+                                <span class="ps-1 pt-1 fs-6">
+                                    {{ ucfirst(dataPorExtenso(date('Y-m-d'))) }}
+                                </span>
+                            </span>
+                            <span class="badge bg-label-secondary d-inline-flex align-items-start ms-2" title="Carga trabalhada">
+                                <i class="icon-base ti tabler-hand-click icon-md"></i>
+                                <span class="ps-1 pt-1 fs-6">
+                                    00:00
+                                </span>
+                            </span>
                             <ul class="navbar-nav flex-row align-items-center ms-md-auto">
                                 <li class="nav-item dropdown-notifications navbar-dropdown dropdown" title="Autorizações">
                                     <a class="nav-link btn btn-icon btn-text-secondary rounded-pill waves-effect" href="javascript:void(0);">
