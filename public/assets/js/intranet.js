@@ -82,6 +82,20 @@ document.addEventListener('livewire:init', () => {
         }, 50); // 50ms é suficiente
     });
 
+    Livewire.on('reapply-masks', () => {
+        $('.mask-cpf').unmask().mask('000.000.000-00');
+        $('.mask-celular').unmask().mask('(000) 0000-0000');
+        $('.mask-telefone').unmask().mask('000 000-0000');
+        $('.mask-protocolo').unmask().mask('000000-0000');
+    });
+
+    document.addEventListener('livewire:init', () => {
+        Livewire.hook('message.processed', () => {
+            //$('.mask-cpf').unmask().mask('000.000.000-00');
+        });
+    });
+
+
     Livewire.on('open-modal', ({ id }) => {
         const el = document.getElementById(id)
         if (!el) return

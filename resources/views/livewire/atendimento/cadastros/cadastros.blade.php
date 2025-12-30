@@ -111,7 +111,6 @@
             </div>
         </div>
     </div>
-
     <div class="row mt-6">
         <div class="col-md-12">
             <div class="card">
@@ -143,14 +142,14 @@
                 <div class="card-body mt-4 table-responsive">
                     <table class="table border table-striped">
                         <thead class="bg-label-secondary">
-                        <tr>
-                            <th class="col-4">Cadastro</th>
-                            <th>Filiação</th>
-                            <th class="text-center">Matrícula</th>
-                            <th>Localidade</th>
-                            <th class="text-center">Atualização</th>
-                            <th class="text-center">Ações</th>
-                        </tr>
+                            <tr>
+                                <th class="col-4">Cadastro</th>
+                                <th>Filiação</th>
+                                <th class="text-center">Matrícula</th>
+                                <th>Localidade</th>
+                                <th class="text-center">Atualização</th>
+                                <th class="text-center">Ações</th>
+                            </tr>
                         </thead>
                         <tbody>
                         @forelse ($customers as $c)
@@ -167,8 +166,9 @@
                                                 {{ $c->nome }}
                                             </a>
                                             <small class="text-body d-block">
-                                                {{ $c->nascimento?->format('d/m/Y') ?? '--' }}
-                                                ({{ $c->sexo ?? '--' }})
+                                                {{ $c->nascimento?->format('d/m/Y') ?? 'Sem informações' }}
+                                                {{ $c->nascimento ? "(".calcularIdade($c->nascimento).")" : null }}
+                                                {{ $c->sexo ?? '--' }}
                                             </small>
                                         </div>
                                     </div>
@@ -189,13 +189,13 @@
                                 </td>
                                 <td class="text-center">
                                     <small class="text-body d-block">{{ $c->updated_at->format('d/m/Y') }}</small>
-                                    <small class="text-body d-block">Nome do Funcionário</small>
+                                    <small class="text-body d-block">{{ $c->updatedBy->name ?? '-' }}</small>
                                 </td>
                                 <td class="text-center">
                                     <div class="d-inline-block text-nowrap">
                                         <button type="button" class="btn btn-text-secondary rounded-pill btn-icon"
-                                                title="Editar" wire:click="openEdit({{ $c->id }})">
-                                            <i class="icon-base ti tabler-edit icon-22px"></i>
+                                                title="Atualização Rápida" wire:click="openEdit({{ $c->id }})">
+                                            <i class="icon-base ti tabler-bolt icon-22px"></i>
                                         </button>
                                         <button class="btn btn-text-secondary rounded-pill btn-icon"
                                                 title="Adicionar Protocolo"
@@ -229,169 +229,123 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal-cadastro" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            {{-- HEADER --}}
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    {{ $cpfFound ? 'Atualizar Cadastro' : 'Novo Cadastro' }}
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            {{-- BODY --}}
-            <div class="modal-body">
-
-                {{-- CPF + NOME --}}
-                <div class="row mb-4">
-                    <div class="col-4">
-                        <label class="form-label">CPF:</label>
-                        <input type="text"
-                               class="form-control mask-cpf @error('cpf') is-invalid @enderror"
-                               wire:model.live="cpf"
-                               wire:input="cpfLookupOnInput">
-                        @error('cpf')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col">
-                        <label class="form-label">
-                            Nome completo <span class="text-danger">*</span>
-                        </label>
-                        <input type="text"
-                               class="form-control @error('nome') is-invalid @enderror"
-                               wire:model.defer="nome">
-                        @error('nome')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+    <div wire:ignore.self class="modal fade" id="modal-cadastro" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        {{ $cpfFound ? 'Atualização Rápida' : 'Novo Cadastro' }}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
-                {{-- NASCIMENTO / SEXO / CELULAR --}}
-                <div class="row g-4 mb-4">
-                    <div class="col">
-                        <label class="form-label">Nascimento</label>
-                        <input type="date"
-                               class="form-control @error('nascimento') is-invalid @enderror"
-                               wire:model.defer="nascimento">
-                        @error('nascimento')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-4">
+                            <label class="form-label">CPF:</label>
+                            <input type="text" class="form-control mask-cpf @error('cpf') is-invalid @enderror" wire:model.defer="cpf" wire:keyup.debounce.350ms="cpfLookup">
+                            @error('cpf')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <label class="form-label">
+                                Nome completo <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control @error('nome') is-invalid @enderror" wire:model.defer="nome">
+                            @error('nome')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-
-                    <div class="col">
-                        <label class="form-label">
-                            Sexo <span class="text-danger">*</span>
-                        </label>
-                        <select class="form-select @error('sexo') is-invalid @enderror"
-                                wire:model.defer="sexo">
-                            <option value="">Selecione...</option>
-                            <option value="F">Feminino</option>
-                            <option value="M">Masculino</option>
-                        </select>
-                        @error('sexo')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="row g-4 mb-4">
+                        <div class="col">
+                            <label class="form-label">Nascimento</label>
+                            <input type="date" class="form-control @error('nascimento') is-invalid @enderror" wire:model.defer="nascimento">
+                            @error('nascimento')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <label class="form-label">
+                                Sexo <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select @error('sexo') is-invalid @enderror" wire:model.defer="sexo">
+                                <option value="">Selecione...</option>
+                                <option value="F">Feminino</option>
+                                <option value="M">Masculino</option>
+                            </select>
+                            @error('sexo')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label">Celular</label>
+                            <input type="text"
+                                class="form-control mask-celular @error('telefone_celular') is-invalid @enderror"
+                                wire:model.defer="telefone_celular">
+                            @error('telefone_celular')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-
-                    <div class="col-4">
-                        <label class="form-label">Celular</label>
-                        <input type="text"
-                               class="form-control mask-celular @error('telefone_celular') is-invalid @enderror"
-                               wire:model.defer="telefone_celular">
-                        @error('telefone_celular')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="row g-4 mb-4">
+                        <div class="col-4">
+                            <label class="form-label">Telefone fixo</label>
+                            <input type="text" class="form-control mask-telefone @error('telefone_fixo') is-invalid @enderror" wire:model.defer="telefone_fixo">
+                            @error('telefone_fixo')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" wire:model.defer="email">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                </div>
-
-                {{-- TELEFONE FIXO / EMAIL --}}
-                <div class="row g-4 mb-4">
-                    <div class="col-4">
-                        <label class="form-label">Telefone fixo</label>
-                        <input type="text"
-                               class="form-control mask-telefone @error('telefone_fixo') is-invalid @enderror"
-                               wire:model.defer="telefone_fixo">
-                        @error('telefone_fixo')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col">
-                        <label class="form-label">Email</label>
-                        <input type="email"
-                               class="form-control @error('email') is-invalid @enderror"
-                               wire:model.defer="email">
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-
-                {{-- PROVÍNCIA / CIDADE --}}
-                <div class="row g-4">
-                    <div class="col-6">
-                        <label class="form-label">Província</label>
-                        <select class="form-select @error('provincia_id') is-invalid @enderror"
-                                wire:model="provincia_id">
-                            <option value="">Selecione...</option>
-                            @foreach($provincias as $p)
-                                <option value="{{ $p->id }}">{{ $p->provincia }}</option>
-                            @endforeach
-                        </select>
-                        @error('provincia_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-6">
-                        <label class="form-label">Cidade</label>
-                        <select class="form-select @error('cidade_id') is-invalid @enderror"
-                                wire:model="cidade_id"
-                                @disabled(!$provincia_id)>
+                    <div class="row g-4">
+                        <div class="col-6">
+                            <label class="form-label">Província</label>
+                            <select class="form-select @error('provincia_id') is-invalid @enderror" wire:model="provincia_id" wire:change="provinciaChanged">
+                                <option value="">Selecione...</option>
+                                @foreach($provincias as $p)
+                                    <option value="{{ $p->id }}">{{ $p->provincia }}</option>
+                                @endforeach
+                            </select>
+                            @error('provincia_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label">Cidade</label>
+                            <select class="form-select @error('cidade_id') is-invalid @enderror" wire:model="cidade_id" wire:key="cidade-select-{{ $provincia_id ?? 'none' }}" {{ empty($provincia_id) ? 'disabled' : '' }}>
                             <option value="">Selecione...</option>
                             @foreach($cities as $city)
-                                <option value="{{ $city['id'] }}">
-                                    {{ $city['cidade'] }}
+                                <option value="{{ (int)$city['id'] }}">
+                                    {{ $city['cidade'] }}{{ !empty($city['capital']) ? ' (Capital)' : '' }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('cidade_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                            @error('cidade_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
                     </div>
                 </div>
-
-            </div>
-
-            {{-- FOOTER --}}
-            <div class="modal-footer">
-                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-                    Cancelar
-                </button>
-
-                @if($cpfFound)
-                    <button type="button"
-                            class="btn btn-primary"
-                            wire:click="saveAndOpen"
-                            wire:loading.attr="disabled">
-                        Atualizar e abrir
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                        Cancelar
                     </button>
-                @else
-                    <button type="button"
-                            class="btn btn-primary"
-                            wire:click="save"
-                            wire:loading.attr="disabled">
-                        Concluir
-                    </button>
-                @endif
+                    @if($cpfFound)
+                        <button type="button" class="btn btn-primary" wire:click="saveAndOpen" wire:loading.attr="disabled">
+                            Atualizar
+                        </button>
+                    @else
+                        <button type="button" class="btn btn-primary" wire:click="save" wire:loading.attr="disabled">
+                            Concluir
+                        </button>
+                    @endif
+                </div>
             </div>
-
         </div>
     </div>
-</div>
-
 </div>

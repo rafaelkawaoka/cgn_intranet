@@ -20,6 +20,7 @@ class Cadastros extends Component
     public ?string $searchCelular = null;
     public ?string $searchMatricula = null;
     public ?string $searchNascimento = null;
+    public bool $prefilling = false;
 
     // form
     public ?int $customerId = null;
@@ -74,19 +75,19 @@ class Cadastros extends Component
     }
 
     private function loadCities(): void
-{
-    $this->cities = JapanCity::query()
-        ->where('provincia_id', $this->provincia_id)
-        ->orderByDesc('capital')
-        ->orderBy('cidade')
-        ->get(['id','cidade','capital'])
-        ->map(fn ($c) => [
-            'id' => $c->id,
-            'cidade' => $c->cidade,
-            'capital' => (int) $c->capital, // garante a chave
-        ])
-        ->all();
-}
+    {
+        $this->cities = JapanCity::query()
+            ->where('provincia_id', $this->provincia_id)
+            ->orderByDesc('capital')
+            ->orderBy('cidade')
+            ->get(['id','cidade','capital'])
+            ->map(fn ($c) => [
+                'id' => $c->id,
+                'cidade' => $c->cidade,
+                'capital' => (int) $c->capital, // garante a chave
+            ])
+            ->all();
+    }
 
 
     public function openCreate(): void
@@ -99,12 +100,11 @@ class Cadastros extends Component
 
     public function openEdit(int $id): void
     {
-        $this->resetValidation();
-
-        $c = Customer::findOrFail($id);
-        $this->fillFromCustomer($c);
+        $customer = Customer::findOrFail($id);
+        $this->fillFromCustomer($customer);
 
         $this->dispatch('open-modal', id: 'modal-cadastro');
+        $this->dispatch('reapply-masks'); // 👈 aqui
     }
 
     private function fillFromCustomer(Customer $c): void
@@ -135,41 +135,37 @@ class Cadastros extends Component
     /**
      * Ao terminar CPF (blur): se existir, puxa e vira modo atualização.
      */
-    public function cpfLookupOnInput(): void
+    public function cpfLookup(): void
     {
-        // pega só dígitos
         $cpf = $this->digitsOnly($this->cpf);
 
-        // se ainda não completou 11, volta pro modo "novo"
-        if (!$cpf || strlen($cpf) < 11) {
+        // enquanto não tiver 11 dígitos, NÃO faz nada (não reseta)
+        if (!$cpf || strlen($cpf) !== 11) {
             $this->cpfFound = false;
-            $this->customerId = null;
+            // importante: não mexer em $this->cpf aqui
+            // e não dar reset em customerId / campos
             return;
         }
 
-        // se passou de 11 (máscara/cola), corta
-        if (strlen($cpf) > 11) {
-            $cpf = substr($cpf, 0, 11);
-            $this->cpf = $cpf; // ok, pode ficar sem máscara; máscara recoloca visual
-        }
-
-        // se já está com esse mesmo CPF carregado, não reconsulta
+        // se já está carregado com esse CPF, não reconsulta
         if ($this->cpfFound && $this->customerId) {
             $current = Customer::find($this->customerId);
             if ($current && $current->cpf === $cpf) return;
         }
 
         $found = Customer::where('cpf', $cpf)->first();
+
         if (!$found) {
             $this->cpfFound = false;
-            $this->customerId = null;
+            $this->customerId = null; // ok limpar aqui (CPF completo e não existe)
             return;
         }
 
         $this->fillFromCustomer($found);
-
-        $this->dispatch('notify', type: 'warning', message: 'CPF já existe. Dados carregados para atualização.');
+        $this->dispatch('notify', type: 'warning', message: 'CPF já cadastrado.');
+        $this->dispatch('reapply-masks'); // pra manter máscara após preencher
     }
+
 
 
     public function save(): void
@@ -289,12 +285,21 @@ class Cadastros extends Component
         ];
     }
 
+    public function provinciaChanged(): void
+    {
+        if ($this->prefilling) return;
+
+        $this->cidade_id = null;
+        $this->loadCities();
+    }
+
+
     public function render()
     {
         $stats = $this->stats();
 
         $q = Customer::query()
-            ->with(['provincia:id,provincia', 'cidade:id,cidade'])
+            ->with(['provincia:id,provincia', 'cidade:id,cidade', 'updatedBy:id,name'])
             ->when($this->searchCpf, fn($qq) => $qq->where('cpf', 'like', '%'.$this->digitsOnly($this->searchCpf).'%'))
             ->when($this->searchName, fn($qq) => $qq->where('nome', 'like', '%'.trim($this->searchName).'%'))
             ->when($this->searchCelular, fn($qq) => $qq->where('telefone_celular', 'like', '%'.$this->digitsOnly($this->searchCelular).'%'))

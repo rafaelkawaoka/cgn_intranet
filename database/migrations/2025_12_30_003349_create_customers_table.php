@@ -28,6 +28,10 @@ return new class extends Migration
             $table->foreign('provincia_id')->references('id')->on('japan_provinces');
             $table->bigInteger('cidade_id')->unsigned()->nullable();
             $table->foreign('cidade_id')->references('id')->on('japan_cities');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
     }
