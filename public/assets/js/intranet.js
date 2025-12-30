@@ -18,6 +18,29 @@ $(document).on('click', '.btn-logout', function (e) {
  $(document).ready(function(){
     $('.mask-cpf').mask('000.000.000-00');
     $('.mask-celular').mask('(000) 0000-0000');
+    $('.mask-telefone').mask('000 000-0000');
+    $('.mask-protocolo').mask('000000-0000');
+
+    $('.mask-matricula').each(function () {
+        const $input = $(this);
+        const prefixo = $input.data('prefixo');
+        const tamanho = 8;
+        const mask = prefixo + '0'.repeat(tamanho);
+        $input.mask(mask, {
+            translation: {
+                '0': { pattern: /[0-9]/ }
+            },
+            onKeyPress: function (value, e, field) {
+                if (value === prefixo) {
+                    field.val('');
+                return;
+                }
+                if (value.length > 0 && !value.startsWith(prefixo)) {
+                    field.val(prefixo + value.replace(/\D/g, ''));
+                }
+            }
+        });
+    });
 });
 
 document.addEventListener('livewire:init', () => {

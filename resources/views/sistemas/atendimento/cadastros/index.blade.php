@@ -14,54 +14,6 @@
         </div>
         <div class="d-flex align-content-center flex-wrap gap-4">
             <button type="submit" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal-cadastro">Novo cadastro</button>
-            <div class="modal fade" id="modal-cadastro" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel1">Novo Cadastro</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row mb-4">
-                                <div class="col-4">
-                                    <label for="cadastro_cpf" class="form-label">CPF:</label>
-                                    <input type="text" id="cadastro_cpf" class="form-control mask-cpf">
-                                </div>
-                                <div class="col">
-                                    <label for="cadastro_nome" class="form-label">Nome completo:<span class="text-danger">*</span></label>
-                                    <input type="text" id="cadastro_nome" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row g-4 mb-4">
-                                <div class="col mb-0">
-                                    <label for="cadastro_nascimento" class="form-label">Nascimento</label>
-                                    <input type="date" id="cadastro_nascimento" max="{{ date('Y-m-d') }}" class="form-control"/>
-                                </div>
-                                <div class="col mb-0">
-                                    <label for="cadastro_sexo" class="form-label">Sexo:<span class="text-danger">*</span></label>
-                                    <select id="cadastro_sexo" class="form-select">
-                                        <option>Selecione...</option>
-                                        <option value="F">Feminino</option>
-                                        <option value="M">Masculino</option>
-                                    </select>
-                                </div>
-                                <div class="col-4">
-                                    <label for="cadastro_telefone" class="form-label">Celular:</label>
-                                    <input type="text" id="cadastro_telefone" class="form-control mask-celular"/>
-                                </div>
-                                <div class="col-12">
-                                    <label for="cadastro_email" class="form-label">Email:</label>
-                                    <input type="email" id="cadastro_email" class="form-control"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary">Concluir</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -100,7 +52,7 @@
                         </span>
                     </h4>
                 </div>
-                <p class="mb-1">Este mês</p>
+                <p class="mb-1">Em {{ mb_strtolower(nomeDoMes(date('m'))) }}</p>
             </div>
         </div>
     </div>
@@ -119,7 +71,7 @@
                         </span>
                     </h4>
                 </div>
-                <p class="mb-1">Este ano</p>
+                <p class="mb-1">Ano de {{ date('Y') }}</p>
             </div>
         </div>
     </div>
@@ -163,7 +115,7 @@
                     </div>
                     <div class="col">
                         <label for="search_matricula" class="form-label">Matrícula:</label>
-                        <input type="text" class="form-control" name="search_matricula">
+                        <input type="text" class="form-control mask-matricula" data-prefixo="{{ env('MATRICULA_PREFIX') }}" name="search_matricula">
                     </div>
                     <div class="col">
                         <label for="search_nascimento" class="form-label">Nascimento:</label>
@@ -171,9 +123,9 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body border-top mt-6">
-                <table class="dt-route-vehicles table dataTable dtr-column">
-                    <thead>
+            <div class="card-body mt-6">
+                <table class="table border table-striped">
+                    <thead class="bg-label-secondary">
                         <tr>
                             <th class="col-4">
                                 Cadastro
@@ -245,7 +197,7 @@
                             </td>
                             <td class="text-center">
                                 <div class="d-inline-block text-nowrap">
-                                    <button class="btn btn-text-secondary rounded-pill waves-effect btn-icon" title="Adicionar Protocolo"><i class="icon-base ti tabler-phone-plus icon-22px"></i></button>
+                                    <button class="btn btn-text-secondary rounded-pill waves-effect btn-icon" title="Adicionar Protocolo" data-bs-toggle="modal" data-bs-target="#modal-protocolo"><i class="icon-base ti tabler-phone-plus icon-22px"></i></button>
                                     <button class="btn btn-text-secondary rounded-pill waves-effect btn-icon" title="Adicionar Serviço"><i class="icon-base ti tabler-file-text-spark icon-22px"></i></button>
                                     <button class="btn btn-text-secondary rounded-pill waves-effect btn-icon" title="Unificar Cadastro"><i class="icon-base ti tabler-users-group icon-22px"></i></button>
                                 </div>
@@ -253,7 +205,6 @@
                         </tr>
                         @endfor
                     </tbody>
-                    <tfoot></tfoot>
                 </table>
             </div>
             <div class="card-footer pb-0">
@@ -294,6 +245,203 @@
                             </ul>
                         </nav>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-cadastro" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Novo Cadastro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-4">
+                    <div class="col-4">
+                        <label for="cadastro_cpf" class="form-label">CPF:</label>
+                        <input type="text" id="cadastro_cpf" class="form-control mask-cpf">
+                    </div>
+                    <div class="col">
+                        <label for="cadastro_nome" class="form-label">Nome completo:<span class="text-danger">*</span></label>
+                        <input type="text" id="cadastro_nome" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row g-4 mb-4">
+                    <div class="col mb-0">
+                        <label for="cadastro_nascimento" class="form-label">Nascimento</label>
+                        <input type="date" id="cadastro_nascimento" max="{{ date('Y-m-d') }}" class="form-control"/>
+                    </div>
+                    <div class="col mb-0">
+                        <label for="cadastro_sexo" class="form-label">Sexo:<span class="text-danger">*</span></label>
+                        <select id="cadastro_sexo" class="form-select">
+                            <option>Selecione...</option>
+                            <option value="F">Feminino</option>
+                            <option value="M">Masculino</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="cadastro_telefone" class="form-label">Celular:</label>
+                        <input type="text" id="cadastro_telefone" class="form-control mask-celular"/>
+                    </div>
+                </div>
+                <div class="row g-4 mb-4">
+                    <div class="col-12">
+                        <label for="cadastro_email" class="form-label">Email:</label>
+                        <input type="email" id="cadastro_email" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Concluir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-protocolo" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="card-header ps-6 pt-6">
+                <h5 class="modal-title me-2" id="exampleModalLabel2">Novo Protocolo de Atendimento </h5>
+                <p class="card-subtitle">Nome completo da pessoa aqui</p>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-4">
+                        <label for="nameSmall" class="form-label">Protocolo:</label>
+                        <input type="text" id="nameSmall" class="form-control mask-protocolo" value="0000000000" disabled/>
+                    </div>
+                    <div class="col mb-4">
+                        <label for="nameSmall" class="form-label">Idioma:<span class="text-danger">*</span></label>
+                        <select id="defaultSelect" class="form-select">
+                            <option>Selecione...</option>
+                            <option value="pt-BR">Português</option>
+                            <option value="ja-JP">Japonês</option>
+                            <option value="es-ES">Espanhol</option>
+                            <option value="en-US">Inglês</option>
+                            <option value="other">Outro</option>
+                        </select>
+                    </div>
+                    <div class="col mb-4">
+                        <label for="nameSmall" class="form-label">Província:</label>
+                        <select id="defaultSelect" class="form-select">
+                            <option>Selecione...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col mb-4">
+                        <label for="nameSmall" class="form-label">Cidade:</label>
+                        <select id="defaultSelect" class="form-select">
+                            <option>Selecione...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col mb-4">
+                        <label class="form-label" for="emailSmall">Email:<span class="text-warning">*</span></label>
+                        <input type="email" class="form-control" id="emailSmall"/>
+                    </div>
+                    <div class="col-3 mb-4">
+                        <label for="nameSmall" class="form-label">Celular:<span class="text-warning">*</span></label>
+                        <input type="text" id="nameSmall" class="form-control mask-celular"/>
+                    </div>
+                    <div class="col-3 mb-4">
+                        <label for="nameSmall" class="form-label">Telefone:<span class="text-warning">*</span></label>
+                        <input type="text" id="nameSmall" class="form-control mask-telefone"/>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-3 mb-4">
+                        <label class="form-label" for="emailSmall">Tipo:<span class="text-danger">*</span></label>
+                        <select id="defaultSelect" class="form-select">
+                            <option>Selecione...</option>
+                            <option value="1">Dúvida</option>
+                            <option value="2">Sugestão</option>
+                            <option value="3">Reclamação</option>
+                        </select>
+                    </div>
+                    <div class="col-3 mb-4">
+                        <label class="form-label" for="emailSmall">Setor:<span class="text-danger">*</span></label>
+                        <select id="defaultSelect" class="form-select">
+                            <option>Selecione...</option>
+                            <option value="1">Dúvida</option>
+                            <option value="2">Sugestão</option>
+                            <option value="3">Reclamação</option>
+                        </select>
+                    </div>
+                    <div class="col mb-4">
+                        <label for="nameSmall" class="form-label">Assunto:<span class="text-danger">*</span></label>
+                        <input class="form-control" list="list_assuntos" id="exampleDataList" />
+                        <datalist id="list_assuntos">
+                            <option value="Assunto 1"></option>
+                            <option value="Assunto 2"></option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <label for="exampleFormControlTextarea1" class="form-label">Detalhes da demanda:</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <label for="exampleFormControlTextarea1" class="form-label">Detalhes do tratamento:<span class="text-danger">*</span></label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md mb-md-0 mb-5" title="Aguardando ação ou resposta da equipe">
+                        <div class="form-check custom-option custom-option-icon">
+                            <label class="form-check-label custom-option-content" for="protocolo_status_pendente">
+                            <span class="custom-option-body">
+                                <i class="icon-base ti tabler-urgent"></i>
+                                <span class="custom-option-title"> Pendente </span>
+                            </span>
+                            <input name="customOptionRadioIcon" class="form-check-input" type="radio" value="" id="protocolo_status_pendente">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md mb-md-0 mb-5" title="Aguardando ação do interessado">
+                        <div class="form-check custom-option custom-option-icon">
+                            <label class="form-check-label custom-option-content" for="protocolo_status_aguardando">
+                            <span class="custom-option-body">
+                                <i class="icon-base ti tabler-hourglass-high"></i>
+                                <span class="custom-option-title"> Aguardando </span>
+                            </span>
+                            <input name="customOptionRadioIcon" class="form-check-input" type="radio" value="" id="protocolo_status_aguardando">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md mb-md-0 mb-5" title="Finalizado e pronto para arquivamento">
+                        <div class="form-check custom-option custom-option-icon">
+                            <label class="form-check-label custom-option-content" for="protocolo_status_finalizado">
+                            <span class="custom-option-body">
+                                <i class="icon-base ti tabler-file-check"></i>
+                                <span class="custom-option-title"> Finalizado </span>
+                            </span>
+                            <input name="customOptionRadioIcon" class="form-check-input" type="radio" value="" id="protocolo_status_finalizado">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <div>
+                    <a href="#" target="_blank" class="btn btn-label-primary">Abrir Cadastro</a>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-label-secondary me-2" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Concluir</button>
                 </div>
             </div>
         </div>
