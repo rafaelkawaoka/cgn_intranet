@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Customer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -34,6 +35,15 @@ return new class extends Migration
             $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
+
+        Customer::create([
+            'cpf' => '37512482850',
+            'nome' => 'Rafael Antonio de Carvalho Kawaoka',
+            'nascimento' => '1988-06-20',
+            'matricula' => 'JPN1234567890',
+            'sexo' => 'M',
+        ]);
+
     }
 
     /**
