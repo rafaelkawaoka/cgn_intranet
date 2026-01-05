@@ -33,10 +33,9 @@ class DadosCadastraisTest extends TestCase
         Livewire::test(DadosCadastrais::class, ['cadastro' => $customer])
             ->assertStatus(200)
             ->assertSet('nome', 'John Doe');
-            // ->assertSee('John Doe'); // Removed assertSee because it might be failing due to wire:model vs value
     }
 
-    public function test_can_update_customer_data()
+    public function test_can_update_customer_data_and_contacts()
     {
         $user = User::create([
             'name' => 'Test User',
@@ -57,10 +56,21 @@ class DadosCadastraisTest extends TestCase
         $country = Country::create(['pais' => 'Brazil', 'gentilico' => 'Brasileiro', 'gentilicoM' => 'Brasileiro', 'gentilicoF' => 'Brasileira', 'codPais' => 'BRA']);
 
         Livewire::test(DadosCadastrais::class, ['cadastro' => $customer])
+            // Dados Cadastrais
             ->set('nome', 'New Name')
             ->set('sexo', 'M')
             ->set('occupation_id', $occupation->id)
             ->set('nacionalidades', [$country->id])
+            // Documentos
+            ->set('cpf', '12345678900')
+            ->set('identidade_numero', 'RG123')
+            // Contatos
+            ->call('addPhone')
+            ->set('phones.0.numero', '11999999999')
+            ->set('phones.0.tipo', 'Celular')
+            ->call('addEmail')
+            ->set('emails.0.email', 'test@test.com')
+            ->set('emails.0.tipo', 'Pessoal')
             ->call('save')
             ->assertHasNoErrors();
 
@@ -69,11 +79,25 @@ class DadosCadastraisTest extends TestCase
             'nome' => 'New Name',
             'sexo' => 'M',
             'occupation_id' => $occupation->id,
+            'cpf' => '12345678900',
+            'identidade_numero' => 'RG123',
+            'telefone_celular' => '11999999999', // Should sync primary
+            'email' => 'test@test.com', // Should sync primary
         ]);
 
         $this->assertDatabaseHas('customer_nationality', [
             'customer_id' => $customer->id,
             'country_id' => $country->id,
+        ]);
+
+        $this->assertDatabaseHas('customer_phones', [
+            'customer_id' => $customer->id,
+            'numero' => '11999999999',
+        ]);
+
+        $this->assertDatabaseHas('customer_emails', [
+            'customer_id' => $customer->id,
+            'email' => 'test@test.com',
         ]);
     }
 
@@ -90,19 +114,11 @@ class DadosCadastraisTest extends TestCase
         $customer = Customer::create(['matricula' => 'TEST001']);
 
         $brazil = Country::create(['pais' => 'Brazil', 'codPais' => 'BRA', 'gentilico' => 'B', 'gentilicoM' => 'B', 'gentilicoF' => 'B']);
-        $japan = Country::create(['pais' => 'Japan', 'codPais' => 'JPN', 'gentilico' => 'J', 'gentilicoM' => 'J', 'gentilicoF' => 'J']);
 
-        // Fix: Use $this->actingAs($user) to be safe for save authorization if any
         Livewire::test(DadosCadastrais::class, ['cadastro' => $customer])
-            ->set('nome', 'Test') // required field
+            ->set('nome', 'Test')
             ->set('pais_nascimento_id', $brazil->id)
             ->set('estado_nascimento_jp_id', 1)
-            // In Livewire testing, setting properties doesn't trigger 'updated*' hooks automatically if you set them individually in a chain?
-            // Actually they should if you use set().
-            // BUT, the `updatedPaisNascimentoId` hook clears variables.
-            // If I set pais_nascimento_id first, it clears things. Then I set estado_nascimento_jp_id.
-            // So `estado_nascimento_jp_id` is 1 when `save()` is called.
-            // The `save()` method logic should handle clearing it based on the country code.
             ->call('save');
 
         $customer->refresh();
