@@ -159,11 +159,11 @@
                         <div class="row mb-6">
                             <div class="col-md-9">
                                 <label class="form-label" for="basic-default-fullname">Nome Completo:</label>
-                                <input type="text" class="form-control" id="" name="" value="">
+                                <input type="text" class="form-control" id="" name="" value="{{ $cadastro->nome }}">
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="basic-default-fullname">Matrícula:</label>
-                                <input type="text" class="form-control" id="" name="" value="" disabled>
+                                <input type="text" class="form-control" id="" name="" value="{{ $cadastro->matricula }}" disabled>
                             </div>
                         </div>
                         <div class="row mb-6">

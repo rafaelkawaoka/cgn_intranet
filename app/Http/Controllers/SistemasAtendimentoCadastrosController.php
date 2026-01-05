@@ -19,7 +19,7 @@ class SistemasAtendimentoCadastrosController extends Controller
 
     public function cadastro(Request $request)
     {
-        $cadastros = Customer::where('matricula', $request->matricula)->firstOrFail();
-        return view('sistemas.atendimento.cadastros.cadastro');
+        $cadastro = Customer::where('matricula', $request->matricula)->firstOrFail();
+        return view('sistemas.atendimento.cadastros.cadastro', compact('cadastro'));
     }
 }
