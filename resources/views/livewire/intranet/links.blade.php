@@ -60,7 +60,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
     <div class="modal fade" id="linkModal" tabindex="-1" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -100,28 +99,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('livewire:initialized', () => {
-            Livewire.on('close-modal', () => {
-                const modalEl = document.getElementById('linkModal');
-                const modal = bootstrap.Modal.getInstance(modalEl);
-                if (modal) {
-                    modal.hide();
-                }
-                const backdrops = document.querySelectorAll('.modal-backdrop');
-                backdrops.forEach(backdrop => {
-                    backdrop.remove();
-                });
-                document.body.classList.remove('modal-open');
-                document.body.style.overflow = '';
-                document.body.style.paddingRight = '';
-            });
-            Livewire.on('open-modal', () => {
-                const modalEl = document.getElementById('linkModal');
-                const modal = new bootstrap.Modal(modalEl);
-                modal.show();
-            });
-        });
-    </script>
 </div>
