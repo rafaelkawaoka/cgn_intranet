@@ -99,4 +99,30 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+            Livewire.on('close-modal', () => {
+                const modalEl = document.getElementById('linkModal');
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                if (modal) {
+                    modal.hide();
+                }
+                const backdrops = document.querySelectorAll('.modal-backdrop');
+                backdrops.forEach(backdrop => {
+                    backdrop.remove();
+                });
+                document.body.classList.remove('modal-open');
+                document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+            });
+            Livewire.on('open-modal', () => {
+                const modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            });
+        });
+    </script>
+>>>>>>> 64d838e1edf7c62cb4d8f91d8bdc2e0bb6d507d7
 </div>
