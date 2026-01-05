@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('occupations', function (Blueprint $table) {
+            $table->id();
             $table->string('profissao');
             $table->string('profissaoM');
             $table->string('profissaoF');
+            $table->timestamps();
         });
         Artisan::call('db:seed', ['--class' => 'OccupationSeeder']);
     }

@@ -11,6 +11,17 @@ class Customer extends Model
         'telefone_celular','telefone_fixo','email',
         'provincia_id','cidade_id',
         'created_by','updated_by',
+        'occupation_id',
+        'estado_civil',
+        'escolaridade',
+        'idioma',
+        'pais_nascimento_id',
+        'estado_nascimento_br_id',
+        'estado_nascimento_jp_id',
+        'estado_nascimento_outro',
+        'cidade_nascimento_br_id',
+        'cidade_nascimento_jp_id',
+        'cidade_nascimento_outro',
     ];
 
     protected $casts = [
@@ -48,5 +59,40 @@ class Customer extends Model
     public function cidade()
     {
         return $this->belongsTo(JapanCity::class, 'cidade_id');
+    }
+
+    public function nationalities()
+    {
+        return $this->belongsToMany(Country::class, 'customer_nationality');
+    }
+
+    public function occupation()
+    {
+        return $this->belongsTo(Occupation::class);
+    }
+
+    public function paisNascimento()
+    {
+        return $this->belongsTo(Country::class, 'pais_nascimento_id');
+    }
+
+    public function estadoNascimentoBr()
+    {
+        return $this->belongsTo(BrazilState::class, 'estado_nascimento_br_id');
+    }
+
+    public function estadoNascimentoJp()
+    {
+        return $this->belongsTo(JapanProvince::class, 'estado_nascimento_jp_id');
+    }
+
+    public function cidadeNascimentoBr()
+    {
+        return $this->belongsTo(BrazilCity::class, 'cidade_nascimento_br_id');
+    }
+
+    public function cidadeNascimentoJp()
+    {
+        return $this->belongsTo(JapanCity::class, 'cidade_nascimento_jp_id');
     }
 }
