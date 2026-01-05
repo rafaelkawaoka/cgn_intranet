@@ -10,6 +10,9 @@ class Links extends Component
 {
     public $links;
 
+    #[Validate('required|string|max:255')]
+    public $category = 'Geral';
+
     #[Validate('required|min:3')]
     public $description = '';
 
@@ -22,7 +25,7 @@ class Links extends Component
 
     public function render()
     {
-        $this->links = IntranetLink::all();
+        $this->links = IntranetLink::orderBy('category')->orderBy('description')->get();
         return view('livewire.intranet.links');
     }
 
@@ -31,11 +34,12 @@ class Links extends Component
         $this->validate();
 
         IntranetLink::create([
+            'category' => $this->category,
             'description' => $this->description,
             'link' => $this->link,
         ]);
 
-        $this->reset(['description', 'link']);
+        $this->reset(['category', 'description', 'link']);
         $this->dispatch('close-modal');
         $this->dispatch('notify', 'Link created successfully!');
     }
@@ -44,6 +48,7 @@ class Links extends Component
     {
         $link = IntranetLink::findOrFail($id);
         $this->linkId = $id;
+        $this->category = $link->category;
         $this->description = $link->description;
         $this->link = $link->link;
         $this->isEditing = true;
@@ -58,11 +63,12 @@ class Links extends Component
         if ($this->linkId) {
             $link = IntranetLink::findOrFail($this->linkId);
             $link->update([
+                'category' => $this->category,
                 'description' => $this->description,
                 'link' => $this->link,
             ]);
 
-            $this->reset(['description', 'link', 'linkId', 'isEditing']);
+            $this->reset(['category', 'description', 'link', 'linkId', 'isEditing']);
             $this->dispatch('close-modal');
             $this->dispatch('notify', 'Link updated successfully!');
         }
@@ -76,7 +82,7 @@ class Links extends Component
 
     public function create()
     {
-        $this->reset(['description', 'link', 'linkId', 'isEditing']);
+        $this->reset(['category', 'description', 'link', 'linkId', 'isEditing']);
         $this->dispatch('open-modal');
     }
 }

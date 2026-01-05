@@ -18,6 +18,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Categoria</th>
                         <th>Descrição</th>
                         <th>Link</th>
                         <th>Ações</th>
@@ -26,6 +27,7 @@
                 <tbody class="table-border-bottom-0">
                     @forelse($links as $item)
                         <tr>
+                            <td>{{ $item->category }}</td>
                             <td>{{ $item->description }}</td>
                             <td><a href="{{ $item->link }}" target="_blank">{{ $item->link }}</a></td>
                             <td>
@@ -59,6 +61,13 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col mb-3">
+                                <label for="category" class="form-label">Categoria</label>
+                                <input type="text" id="category" wire:model="category" class="form-control @error('category') is-invalid @enderror" placeholder="Ex: Geral">
+                                @error('category') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
                                 <label for="description" class="form-label">Descrição</label>
                                 <input type="text" id="description" wire:model="description" class="form-control @error('description') is-invalid @enderror" placeholder="Ex: Portal RH">
                                 @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -89,6 +98,15 @@
                 if (modal) {
                     modal.hide();
                 }
+
+                // Force remove backdrop if it gets stuck
+                const backdrops = document.querySelectorAll('.modal-backdrop');
+                backdrops.forEach(backdrop => {
+                    backdrop.remove();
+                });
+                document.body.classList.remove('modal-open');
+                document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
             });
 
             Livewire.on('open-modal', () => {

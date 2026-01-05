@@ -10,6 +10,7 @@ class IntranetLink extends Model
     use HasFactory;
 
     protected $fillable = [
+        'category',
         'description',
         'link',
     ];

@@ -30,12 +30,14 @@ class IntranetLinksTest extends TestCase
     public function test_can_create_link()
     {
         Livewire::test('intranet.links')
+            ->set('category', 'Tools')
             ->set('description', 'Test Link')
             ->set('link', 'https://example.com')
             ->call('store')
             ->assertHasNoErrors();
 
         $this->assertDatabaseHas('intranet_links', [
+            'category' => 'Tools',
             'description' => 'Test Link',
             'link' => 'https://example.com',
         ]);
@@ -44,12 +46,14 @@ class IntranetLinksTest extends TestCase
     public function test_can_update_link()
     {
         $link = IntranetLink::create([
+            'category' => 'General',
             'description' => 'Old Description',
             'link' => 'https://old.com',
         ]);
 
         Livewire::test('intranet.links')
             ->call('edit', $link->id)
+            ->set('category', 'Updated Cat')
             ->set('description', 'New Description')
             ->set('link', 'https://new.com')
             ->call('update')
@@ -57,9 +61,21 @@ class IntranetLinksTest extends TestCase
 
         $this->assertDatabaseHas('intranet_links', [
             'id' => $link->id,
+            'category' => 'Updated Cat',
             'description' => 'New Description',
             'link' => 'https://new.com',
         ]);
+    }
+
+    public function test_links_are_sorted_by_category_then_description()
+    {
+        IntranetLink::create(['category' => 'B', 'description' => 'Z', 'link' => 'http://b.com']);
+        IntranetLink::create(['category' => 'A', 'description' => 'Y', 'link' => 'http://a.com']);
+        IntranetLink::create(['category' => 'A', 'description' => 'X', 'link' => 'http://a.com']);
+
+        Livewire::test('intranet.links')
+            ->assertSeeInOrder(['X', 'Y', 'Z']);
+            // A-X, A-Y, B-Z
     }
 
     public function test_can_delete_link()
@@ -86,3 +102,4 @@ class IntranetLinksTest extends TestCase
             ->assertHasErrors(['description', 'link']);
     }
 }
+// Verified restoration
