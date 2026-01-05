@@ -29,16 +29,25 @@ class Links extends Component
         return view('livewire.intranet.links');
     }
 
+    protected function messages()
+    {
+        return [
+            'category.required' => 'O campo categoria é obrigatório.',
+            'description.required' => 'O campo descrição é obrigatório.',
+            'description.min' => 'A descrição deve ter pelo menos 3 caracteres.',
+            'link.required' => 'O endereço do link é obrigatório.',
+            'link.url' => 'Insira um formato de link válido (ex: https://...).',
+        ];
+    }
+
     public function store()
     {
         $this->validate();
-
         IntranetLink::create([
             'category' => $this->category,
             'description' => $this->description,
             'link' => $this->link,
         ]);
-
         $this->reset(['category', 'description', 'link']);
         $this->dispatch('close-modal');
         $this->dispatch('notify', 'Link created successfully!');
@@ -52,14 +61,12 @@ class Links extends Component
         $this->description = $link->description;
         $this->link = $link->link;
         $this->isEditing = true;
-
         $this->dispatch('open-modal');
     }
 
     public function update()
     {
         $this->validate();
-
         if ($this->linkId) {
             $link = IntranetLink::findOrFail($this->linkId);
             $link->update([
@@ -67,7 +74,6 @@ class Links extends Component
                 'description' => $this->description,
                 'link' => $this->link,
             ]);
-
             $this->reset(['category', 'description', 'link', 'linkId', 'isEditing']);
             $this->dispatch('close-modal');
             $this->dispatch('notify', 'Link updated successfully!');

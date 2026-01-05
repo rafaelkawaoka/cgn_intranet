@@ -30,8 +30,8 @@
                     <tr class="bg-label-secondary">
                         <th>Descrição</th>
                         <th>Link</th>
-                        <th>Categoria</th>
-                        <th>Ações</th>
+                        <th class="col-3">Categoria</th>
+                        <th class="col-1">Ações</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
