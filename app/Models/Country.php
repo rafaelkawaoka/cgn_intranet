@@ -19,5 +19,8 @@ class Country extends Model
         'destaque'
     ];
 
-
+    public function customers()
+    {
+        return $this->belongsToMany(Customer::class, 'customer_nationality');
+    }
 }
