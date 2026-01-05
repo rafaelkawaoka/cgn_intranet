@@ -200,7 +200,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="basic-default-fullname">Profissão:</label>
-                                <select class="form-select" id="" name="">
+                                <select class="form-select select-search" id="" name="">
                                     <option selected="">Selecione...</option>
                                     @foreach (App\Models\Occupation::orderBy('profissao')->get() as $profissao)
                                     <option value="{{ $profissao->is }}">{{ $profissao->profissao }}</option>
@@ -215,19 +215,22 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="basic-default-fullname">País:</label>
-                                <select class="form-select" id="" name="">
+                                <select class="form-select select-search" id="" name="">
                                     <option selected="">Selecione...</option>
+                                    @foreach (App\Models\Country::orderBy('pais')->get() as $pais)
+                                    <option value="{{ $pais->id }}">{{ $pais->pais }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="basic-default-fullname">Estado/Província:</label>
-                                <select class="form-select" id="" name="">
+                                <select class="form-select select-search" id="" name="">
                                     <option selected="">Selecione...</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label" for="basic-default-fullname">Cidade:</label>
-                                <select class="form-select" id="" name="">
+                                <select class="form-select select-search" id="" name="">
                                     <option selected="">Selecione...</option>
                                 </select>
                             </div>
@@ -235,7 +238,11 @@
                         <div class="row mb-9">
                             <div class="col-md-9">
                                 <label class="form-label" for="basic-default-fullname">Nacionalidades:</label>
-                                <input type="text" class="form-control" id="" name="" value="">
+                                <select id="cadastro_nacionalidades" class="select2 form-select" multiple>
+                                    @foreach (App\Models\Country::orderBy('pais')->get() as $pais)
+                                    <option value="{{ $pais->id }}">{{ $pais->gentilicoF }}</option>
+                                    @endforeach
+                                </select> 
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="basic-default-fullname">Idioma:</label>
@@ -1106,3 +1113,21 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script>
+$(document).ready(function() {
+    $('.select-search').select2({
+        width: '100%',
+    });
+});
+    $('#cadastro_nacionalidades').select2({
+        placeholder: "Selecione ou digite",
+        allowClear: true,
+        tags: false,
+        tokenSeparators: [',', ' ']
+    });
+
+
+</script>
+@endsection')

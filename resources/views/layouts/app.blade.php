@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/vendor/libs/notyf/notyf.css') }}" />
         <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
@@ -479,6 +480,7 @@
         <script src="{{ asset('assets/vendor/libs/hammer/hammer.js') }}"></script>
         <script src="{{ asset('assets/vendor/libs/notyf/notyf.js') }}"></script>
         <script src="{{ asset('assets/vendor/libs/jquery-mask/jquery.mask.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
         <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <script src="{{ asset('assets/js/intranet.js') }}"></script>
