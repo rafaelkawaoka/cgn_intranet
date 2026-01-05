@@ -92,14 +92,10 @@
 
     <script>
         document.addEventListener('livewire:initialized', () => {
-            Livewire.on('close-modal', () => {
-                const modalEl = document.getElementById('linkModal');
-                const modal = bootstrap.Modal.getInstance(modalEl);
-                if (modal) {
-                    modal.hide();
-                }
+            const modalEl = document.getElementById('linkModal');
 
-                // Force remove backdrop if it gets stuck
+            // Clean up backdrop on manual close
+            modalEl.addEventListener('hidden.bs.modal', event => {
                 const backdrops = document.querySelectorAll('.modal-backdrop');
                 backdrops.forEach(backdrop => {
                     backdrop.remove();
@@ -109,8 +105,14 @@
                 document.body.style.paddingRight = '';
             });
 
+            Livewire.on('close-modal', () => {
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                if (modal) {
+                    modal.hide();
+                }
+            });
+
             Livewire.on('open-modal', () => {
-                const modalEl = document.getElementById('linkModal');
                 const modal = new bootstrap.Modal(modalEl);
                 modal.show();
             });
