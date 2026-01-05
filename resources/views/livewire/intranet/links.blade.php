@@ -118,7 +118,6 @@
                 document.body.style.paddingRight = '';
             });
             Livewire.on('open-modal', () => {
-                const modalEl = document.getElementById('linkModal');
                 const modal = new bootstrap.Modal(modalEl);
                 modal.show();
             });
