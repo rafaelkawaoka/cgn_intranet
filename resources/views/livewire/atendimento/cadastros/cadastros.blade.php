@@ -280,9 +280,7 @@
                         </div>
                         <div class="col-4">
                             <label class="form-label">Celular</label>
-                            <input type="text"
-                                class="form-control mask-celular @error('telefone_celular') is-invalid @enderror"
-                                wire:model.defer="telefone_celular">
+                            <input type="text" class="form-control mask-celular @error('telefone_celular') is-invalid @enderror" wire:model.defer="telefone_celular">
                             @error('telefone_celular')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -310,7 +308,7 @@
                             <select class="form-select @error('provincia_id') is-invalid @enderror" wire:model="provincia_id" wire:change="provinciaChanged">
                                 <option value="">Selecione...</option>
                                 @foreach($provincias as $p)
-                                    <option value="{{ $p->id }}">{{ $p->provincia }}</option>
+                                <option value="{{ $p->id }}">{{ $p->provincia }}</option>
                                 @endforeach
                             </select>
                             @error('provincia_id')

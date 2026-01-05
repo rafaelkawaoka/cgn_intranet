@@ -94,7 +94,6 @@ class Cadastros extends Component
     {
         $this->resetValidation();
         $this->resetForm();
-
         $this->dispatch('open-modal', id: 'modal-cadastro');
     }
 
@@ -102,7 +101,6 @@ class Cadastros extends Component
     {
         $customer = Customer::findOrFail($id);
         $this->fillFromCustomer($customer);
-
         $this->dispatch('open-modal', id: 'modal-cadastro');
         $this->dispatch('reapply-masks'); // 👈 aqui
     }
@@ -110,7 +108,6 @@ class Cadastros extends Component
     private function fillFromCustomer(Customer $c): void
     {
         $this->prefilling = true;
-
         $this->customerId = $c->id;
         $this->cpf = $c->cpf;
         $this->nome = $c->nome;
@@ -119,35 +116,22 @@ class Cadastros extends Component
         $this->telefone_celular = $c->telefone_celular;
         $this->telefone_fixo = $c->telefone_fixo;
         $this->email = $c->email;
-
         $this->provincia_id = (int) $c->provincia_id;
         $this->loadCities();
-
-        // 👇 NÃO seta aqui
         $this->dispatch('set-city-after-load', cidadeId: (int) $c->cidade_id);
-
         $this->cpfFound = true;
         $this->prefilling = false;
     }
 
-
-
-    /**
-     * Ao terminar CPF (blur): se existir, puxa e vira modo atualização.
-     */
     public function cpfLookup(): void
     {
+        //Ao terminar CPF (blur): se existir, puxa e vira modo atualização.
         $cpf = $this->digitsOnly($this->cpf);
-
-        // enquanto não tiver 11 dígitos, NÃO faz nada (não reseta)
         if (!$cpf || strlen($cpf) !== 11) {
             $this->cpfFound = false;
-            // importante: não mexer em $this->cpf aqui
-            // e não dar reset em customerId / campos
             return;
         }
 
-        // se já está carregado com esse CPF, não reconsulta
         if ($this->cpfFound && $this->customerId) {
             $current = Customer::find($this->customerId);
             if ($current && $current->cpf === $cpf) return;
@@ -157,13 +141,13 @@ class Cadastros extends Component
 
         if (!$found) {
             $this->cpfFound = false;
-            $this->customerId = null; // ok limpar aqui (CPF completo e não existe)
+            $this->customerId = null;
             return;
         }
 
         $this->fillFromCustomer($found);
         $this->dispatch('notify', type: 'warning', message: 'CPF já cadastrado.');
-        $this->dispatch('reapply-masks'); // pra manter máscara após preencher
+        $this->dispatch('reapply-masks');
     }
 
 
@@ -171,14 +155,10 @@ class Cadastros extends Component
     public function save(): void
     {
         $data = $this->validate($this->rules());
-
-        // normaliza
         $data['cpf'] = $this->digitsOnly($data['cpf'] ?? null);
         $data['telefone_celular'] = $this->digitsOnly($data['telefone_celular'] ?? null);
         $data['telefone_fixo'] = $this->digitsOnly($data['telefone_fixo'] ?? null);
         $data['email'] = $data['email'] ? mb_strtolower(trim($data['email'])) : null;
-
-        // cidade pertence à província
         if (!empty($data['cidade_id']) && !empty($data['provincia_id'])) {
             $ok = JapanCity::where('id', $data['cidade_id'])
                 ->where('provincia_id', $data['provincia_id'])
@@ -204,16 +184,11 @@ class Cadastros extends Component
         $this->resetForm();
     }
 
-    /**
-     * Atualiza e abre (quando CPF já existia).
-     * Ajuste a rota para a sua tela real.
-     */
     public function saveAndOpen()
     {
         $this->save();
 
         if ($this->customerId) {
-            // TROQUE essa rota para a sua
             return $this->redirectRoute('sistemas.atendimento.cadastros.show', ['id' => $this->customerId], navigate: true);
         }
     }
@@ -306,10 +281,8 @@ class Cadastros extends Component
             ->when($this->searchMatricula, fn($qq) => $qq->where('matricula', 'like', '%'.trim($this->searchMatricula).'%'))
             ->when($this->searchNascimento, fn($qq) => $qq->whereDate('nascimento', $this->searchNascimento));
 
-        // filtro rápido pelos cards (created_at)
         $q->when($this->createdRange, function ($qq) {
             $now = Carbon::now();
-
             if ($this->createdRange === 'week') {
                 $start = $now->copy()->startOfWeek(Carbon::MONDAY);
                 $end   = $now->copy()->endOfWeek(Carbon::SUNDAY);
@@ -322,11 +295,9 @@ class Cadastros extends Component
         });
 
         $customers = $q->orderByDesc('updated_at')->paginate(25);
-
         $provincias = JapanProvince::query()
             ->orderBy('provincia')
             ->get(['id','provincia']);
-
         return view('livewire.atendimento.cadastros.cadastros', [
             'customers' => $customers,
             'stats' => $stats,
