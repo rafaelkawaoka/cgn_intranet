@@ -71,8 +71,8 @@ class DadosCadastrais extends Component
         // Load static collections
         $this->countries = Country::orderBy('pais')->get();
         $this->occupations = Occupation::orderBy('profissao')->get();
-        $this->brazilStates = BrazilState::orderBy('nome')->get();
-        $this->japanProvinces = JapanProvince::orderBy('name')->get();
+        $this->brazilStates = BrazilState::orderBy('estado')->get();
+        $this->japanProvinces = JapanProvince::orderBy('provincia')->get();
 
         // Load dynamic collections based on current selection
         $this->loadCities();
@@ -105,11 +105,11 @@ class DadosCadastrais extends Component
     public function loadCities()
     {
         if ($this->estado_nascimento_br_id) {
-            $this->brazilCities = BrazilCity::where('brazil_state_id', $this->estado_nascimento_br_id)->orderBy('nome')->get();
+            $this->brazilCities = BrazilCity::where('estado_id', $this->estado_nascimento_br_id)->orderBy('cidade')->get();
         }
 
         if ($this->estado_nascimento_jp_id) {
-            $this->japanCities = JapanCity::where('japan_province_id', $this->estado_nascimento_jp_id)->orderBy('name')->get();
+            $this->japanCities = JapanCity::where('provincia_id', $this->estado_nascimento_jp_id)->orderBy('cidade')->get();
         }
     }
 

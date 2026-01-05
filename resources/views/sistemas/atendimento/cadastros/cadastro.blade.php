@@ -106,5 +106,14 @@
 @endsection
 
 @section('scripts')
-
+<script>
+    $(document).ready(function() {
+    $('#nacionalidades').select2({
+        placeholder: "Selecione ou digite...",
+        allowClear: true,
+        width: '100%',
+        tags: true,
+    });
+});
+</script>
 @endsection

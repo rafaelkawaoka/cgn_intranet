@@ -146,7 +146,7 @@
                                         <select class="form-select" id="estado_nascimento_br_id" wire:model.live="estado_nascimento_br_id">
                                             <option value="">Selecione...</option>
                                             @foreach ($brazilStates as $state)
-                                                <option value="{{ $state->id }}">{{ $state->nome }}</option>
+                                                <option value="{{ $state->id }}">{{ $state->estado }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -155,7 +155,7 @@
                                         <select class="form-select" id="cidade_nascimento_br_id" wire:model="cidade_nascimento_br_id">
                                             <option value="">Selecione...</option>
                                             @foreach ($brazilCities as $city)
-                                                <option value="{{ $city->id }}">{{ $city->nome }}</option>
+                                                <option value="{{ $city->id }}">{{ $city->cidade }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -165,7 +165,7 @@
                                         <select class="form-select" id="estado_nascimento_jp_id" wire:model.live="estado_nascimento_jp_id">
                                             <option value="">Selecione...</option>
                                             @foreach ($japanProvinces as $province)
-                                                <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                <option value="{{ $province->id }}">{{ $province->provincia }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -174,7 +174,7 @@
                                         <select class="form-select" id="cidade_nascimento_jp_id" wire:model="cidade_nascimento_jp_id">
                                             <option value="">Selecione...</option>
                                             @foreach ($japanCities as $city)
-                                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                <option value="{{ $city->id }}">{{ $city->cidade }}</option>
                                             @endforeach
                                         </select>
                                     </div>
