@@ -28,7 +28,7 @@ Route::prefix('sistemas')->name('sistemas.')->group(function () {
 
     Route::prefix('atendimento')->name('atendimento.')->group(function () {
         Route::get('/cadastros', [App\Http\Controllers\SistemasAtendimentoCadastrosController::class, 'index'])->name('cadastros');
-        Route::get('/cadastros/{id}', [App\Http\Controllers\SistemasAtendimentoCadastrosController::class, 'cadastro'])->name('cadastros.cadastro');
+        Route::get('/cadastros/{matricula}', [App\Http\Controllers\SistemasAtendimentoCadastrosController::class, 'cadastro'])->name('cadastros.cadastro');
         Route::get('/agendamentos', [App\Http\Controllers\SistemasAtendimentoAgendamentosController::class, 'index'])->name('agendamentos');
         Route::get('/protocolos', [App\Http\Controllers\SistemasAtendimentoProtocolosController::class, 'index'])->name('protocolos');
         Route::get('/whatsapp', [App\Http\Controllers\SistemasAtendimentoWhatsAppController::class, 'index'])->name('whatsapp');

@@ -157,12 +157,12 @@
                                 <td>
                                     <div class="d-flex justify-content-start align-items-center user-name">
                                         <div class="me-4 border rounded">
-                                            <a href="javascript:;" wire:click="openEdit({{ $c->id }})">
+                                            <a href="{{ route('sistemas.atendimento.cadastros.cadastro', (['matricula' => $c->matricula])) }}">
                                                 <img src="{{ asset('assets/img/placeholders/user_placeholder.jpg') }}" class="rounded" width="46" alt="">
                                             </a>
                                         </div>
                                         <div class="d-flex flex-column">
-                                            <a class="text-heading text-nowrap fw-medium text-body" href="javascript:;" wire:click="openEdit({{ $c->id }})">
+                                            <a class="text-heading text-nowrap fw-medium text-body" href="{{ route('sistemas.atendimento.cadastros.cadastro', (['matricula' => $c->matricula])) }}">
                                                 {{ $c->nome }}
                                             </a>
                                             <small class="text-body d-block">

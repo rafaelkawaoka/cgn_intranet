@@ -202,6 +202,9 @@
                                 <label class="form-label" for="basic-default-fullname">Profissão:</label>
                                 <select class="form-select" id="" name="">
                                     <option selected="">Selecione...</option>
+                                    @foreach (App\Models\Occupation::orderBy('profissao')->get() as $profissao)
+                                    <option value="{{ $profissao->is }}">{{ $profissao->profissao }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

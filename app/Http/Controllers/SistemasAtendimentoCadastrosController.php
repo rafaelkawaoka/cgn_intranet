@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class SistemasAtendimentoCadastrosController extends Controller
@@ -16,8 +17,9 @@ class SistemasAtendimentoCadastrosController extends Controller
         return view('sistemas.atendimento.cadastros.index');
     }
 
-    public function cadastro()
+    public function cadastro(Request $request)
     {
+        $cadastros = Customer::where('matricula', $request->matricula)->firstOrFail();
         return view('sistemas.atendimento.cadastros.cadastro');
     }
 }
