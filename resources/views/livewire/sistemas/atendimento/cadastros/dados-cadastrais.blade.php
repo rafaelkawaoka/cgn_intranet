@@ -18,7 +18,6 @@
                                 <i class="icon-base ti tabler-home icon-sm d-sm-none"></i>
                             </button>
                         </li>
-                        {{-- Other tabs placeholders --}}
                         <li class="nav-item mb-1 mb-sm-0" role="presentation">
                             <button type="button" class="nav-link waves-effect waves-light" role="tab" data-bs-toggle="tab" data-bs-target="#tab-documentos" aria-controls="tab-documentos" aria-selected="false" tabindex="-1">
                                 <span class="d-none d-sm-inline-flex align-items-center"><i class="icon-base ti tabler-id-badge-2 icon-sm me-1_5"></i>Documentos</span>
@@ -58,6 +57,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
+                        <!-- Dados Cadastrais -->
                         <div class="tab-pane fade show active" id="tab-cadastro" role="tabpanel">
                             <h5>Dados Cadastrais</h5>
                             <hr>
@@ -215,7 +215,7 @@
                                 </div>
                             </div>
 
-                            {{-- Other sections placeholders (Conjuge, Filiacao) --}}
+                            {{-- Placeholder sections (Conjuge, Filiacao) - Keeping static for now as requested per "bind fields of Documentos and Contatos" focus --}}
                             <hr class="mt-4 pb-4">
                             <div class="card-header header-elements mb-4">
                                 <h5 class="mb-0 me-2">Dados do Cônjuge</h5>
@@ -281,24 +281,374 @@
                             </div>
 
                         </div>
-                        {{-- Empty tabs for now --}}
+
+                        <!-- Documentos -->
                         <div class="tab-pane fade" id="tab-documentos" role="tabpanel">
-                            <p>Conteúdo da aba Documentos (Não implementado nesta fase)</p>
+                            <h5>Documentação</h5>
+                            <hr>
+                            <div class="row mb-6">
+                                <div class="col-md-3">
+                                    <label class="form-label" for="cpf">CPF:</label>
+                                    <input type="text" class="form-control" id="cpf" wire:model="cpf">
+                                </div>
+                            </div>
+                            <div class="row mb-6">
+                                <div class="col-md-2">
+                                    <label class="form-label" for="identidade_tipo">Identidade:</label>
+                                    <select class="form-select" id="identidade_tipo" wire:model="identidade_tipo">
+                                        <option value="">Selecione...</option>
+                                        <option value="CIN">CIN</option>
+                                        <option value="RG">RG</option>
+                                        <option value="RNE">RNE</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label" for="identidade_numero">Número do documento:</label>
+                                    <input type="text" class="form-control" id="identidade_numero" wire:model="identidade_numero">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label" for="identidade_orgao">Órgão emissor:</label>
+                                    <input type="text" class="form-control" id="identidade_orgao" wire:model="identidade_orgao">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label" for="identidade_emissao">Data de emissão:</label>
+                                    <input type="date" class="form-control" id="identidade_emissao" wire:model="identidade_emissao" max="{{ date('Y-m-d') }}">
+                                </div>
+                            </div>
+                            <div class="row mb-6">
+                                <div class="col-md-3">
+                                    <label class="form-label" for="titulo_eleitor">Título de eleitor:</label>
+                                    <input type="text" class="form-control" id="titulo_eleitor" wire:model="titulo_eleitor">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label" for="titulo_secao">Seção eleitoral:</label>
+                                    <input type="text" class="form-control" id="titulo_secao" wire:model="titulo_secao">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label" for="titulo_zona">Zona eleitoral:</label>
+                                    <input type="text" class="form-control" id="titulo_zona" wire:model="titulo_zona">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label" for="titulo_local">Local de votação:</label>
+                                    <select class="form-select" id="titulo_local" wire:model="titulo_local">
+                                        <option value="">Selecione...</option>
+                                        <option value="Exterior - Nagoia">Exterior - Nagoia</option>
+                                        <option value="Exterior - Toyohashi">Exterior - Toyohashi</option>
+                                        <option value="Exterior - Suzuka">Exterior - Suzuka</option>
+                                        <option value="Exterior - Hiroshima">Exterior - Hiroshima</option>
+                                        <option value="Exterior - Toyama">Exterior - Toyama</option>
+                                        <option value="Exterior - Japão Outros">Exterior - Japão Outros</option>
+                                        <option value="Exterior - Outros">Exterior - Outros</option>
+                                        <option value="Território Nacional">Território Nacional</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-9">
+                                <div class="col-md-3">
+                                    <label class="form-label" for="zayriu_card">Zayriu card:</label>
+                                    <input type="text" class="form-control" id="zayriu_card" wire:model="zayriu_card">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label" for="habilitacao_japonesa">Habilitação japonesa:</label>
+                                    <input type="text" class="form-control" id="habilitacao_japonesa" wire:model="habilitacao_japonesa">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label" for="passaporte_estrangeiro">Passaporte estrangeiro:</label>
+                                    <input type="text" class="form-control" id="passaporte_estrangeiro" wire:model="passaporte_estrangeiro">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label" for="passaporte_estrangeiro_validade">Passaporte estrangeiro validade:</label>
+                                    <input type="date" class="form-control" id="passaporte_estrangeiro_validade" wire:model="passaporte_estrangeiro_validade">
+                                </div>
+                            </div>
+                            <hr class="mt-4 pb-4">
+                            <div class="card-header header-elements mb-4">
+                                <h5 class="mb-0 me-2">Passaportes</h5>
+                                <div class="card-header-elements ms-auto">
+                                    <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                        <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr class="bg-label-secondary">
+                                            <th class="col-md-2 text-center" style="padding: 8px">Número</th>
+                                            <th class="col-md-2 text-center" style="padding: 8px">Expedidor</th>
+                                            <th class="col-md-2 text-center" style="padding: 8px">Validade</th>
+                                            <th class="col-md-2 text-center" style="padding: 8px">Status</th>
+                                            <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center" colspan="5" style="padding: 30px">Nenhum passaporte cadastrado.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr class="mt-4 pb-4">
+                            <div class="card-header header-elements mb-4">
+                                <h5 class="mb-0 me-2">Digitalizações</h5>
+                                <div class="card-header-elements ms-auto">
+                                    <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                        <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr class="bg-label-secondary">
+                                            <th class="text-center" style="padding: 8px">Tipo de documento</th>
+                                            <th class="col-md-2 text-center" style="padding: 8px">Data Upload</th>
+                                            <th class="text-center" style="padding: 8px">Funcionário</th>
+                                            <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center" colspan="4" style="padding: 30px">Nenhum documento digitalizado.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+
+                        <!-- Contatos -->
                         <div class="tab-pane fade" id="tab-contatos" role="tabpanel">
-                             <p>Conteúdo da aba Contatos (Não implementado nesta fase)</p>
+                            {{-- Phones --}}
+                            <div class="card-header header-elements mb-4">
+                                <h5 class="mb-0 me-2">Números de telefone</h5>
+                                <div class="card-header-elements ms-auto">
+                                    <button type="button" class="btn btn-xs btn-primary waves-effect waves-light" wire:click="addPhone">
+                                        <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr class="bg-label-secondary">
+                                            <th class="col-md-3 text-center" style="padding: 8px">Número</th>
+                                            <th class="col-md-3 text-center" style="padding: 8px">Tipo</th>
+                                            <th class="col-md-4 text-center" style="padding: 8px">Observações</th>
+                                            <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($phones as $index => $phone)
+                                        <tr>
+                                            <td style="padding: 5px">
+                                                <input type="text" class="form-control form-control-sm" wire:model="phones.{{ $index }}.numero">
+                                                @error('phones.'.$index.'.numero') <span class="text-danger">{{ $message }}</span> @enderror
+                                            </td>
+                                            <td style="padding: 5px">
+                                                 <select class="form-select form-select-sm" wire:model="phones.{{ $index }}.tipo">
+                                                    <option value="Celular">Celular</option>
+                                                    <option value="Fixo">Fixo</option>
+                                                </select>
+                                            </td>
+                                             <td style="padding: 5px">
+                                                <input type="text" class="form-control form-control-sm" wire:model="phones.{{ $index }}.observacoes">
+                                            </td>
+                                            <td class="text-center" style="padding: 5px">
+                                                <button type="button" class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Excluir" wire:click="removePhone({{ $index }})"><i class="icon-base ti tabler-trash icon-22px"></i></button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        @if(empty($phones))
+                                        <tr>
+                                            <td class="text-center" colspan="4" style="padding: 30px">Nenhum telefone cadastrado.</td>
+                                        </tr>
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {{-- Emails --}}
+                            <hr class="mt-4 pb-4">
+                            <div class="card-header header-elements mb-4">
+                                <h5 class="mb-0 me-2">Endereços eletrônicos</h5>
+                                <div class="card-header-elements ms-auto">
+                                    <button type="button" class="btn btn-xs btn-primary waves-effect waves-light" wire:click="addEmail">
+                                        <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr class="bg-label-secondary">
+                                            <th class="col-md-5 text-center" style="padding: 8px">Endereço Eletrônico</th>
+                                            <th class="col-md-3 text-center" style="padding: 8px">Tipo</th>
+                                            <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($emails as $index => $email)
+                                        <tr>
+                                            <td style="padding: 5px">
+                                                <input type="text" class="form-control form-control-sm" wire:model="emails.{{ $index }}.email">
+                                                @error('emails.'.$index.'.email') <span class="text-danger">{{ $message }}</span> @enderror
+                                            </td>
+                                            <td style="padding: 5px">
+                                                <select class="form-select form-select-sm" wire:model="emails.{{ $index }}.tipo">
+                                                    <option value="Pessoal">Pessoal</option>
+                                                    <option value="Trabalho">Trabalho</option>
+                                                </select>
+                                            </td>
+                                            <td class="text-center" style="padding: 5px">
+                                                <button type="button" class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Excluir" wire:click="removeEmail({{ $index }})"><i class="icon-base ti tabler-trash icon-22px"></i></button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                         @if(empty($emails))
+                                        <tr>
+                                            <td class="text-center" colspan="3" style="padding: 30px">Nenhum endereço eletrônico cadastrado.</td>
+                                        </tr>
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {{-- Emergency Contacts --}}
+                            <hr class="mt-4 pb-4">
+                            <div class="card-header header-elements mb-4">
+                                <h5 class="mb-0 me-2">Contatos de emergência</h5>
+                                <div class="card-header-elements ms-auto">
+                                    <button type="button" class="btn btn-xs btn-primary waves-effect waves-light" wire:click="addEmergencyContact">
+                                        <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr class="bg-label-secondary">
+                                            <th class="text-center" style="padding: 8px">Nome</th>
+                                            <th class="col-md-3 text-center" style="padding: 8px">Telefone</th>
+                                            <th class="col-md-3 text-center" style="padding: 8px">Parentesco</th>
+                                            <th class="col-md-2 text-center" style="padding: 8px">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         @foreach($emergencyContacts as $index => $contact)
+                                        <tr>
+                                            <td style="padding: 5px">
+                                                <input type="text" class="form-control form-control-sm" wire:model="emergencyContacts.{{ $index }}.nome">
+                                                 @error('emergencyContacts.'.$index.'.nome') <span class="text-danger">{{ $message }}</span> @enderror
+                                            </td>
+                                            <td style="padding: 5px">
+                                                <input type="text" class="form-control form-control-sm" wire:model="emergencyContacts.{{ $index }}.telefone">
+                                            </td>
+                                            <td style="padding: 5px">
+                                                <input type="text" class="form-control form-control-sm" wire:model="emergencyContacts.{{ $index }}.parentesco">
+                                            </td>
+                                            <td class="text-center" style="padding: 5px">
+                                                <button type="button" class="btn btn-text-primary btn-sm rounded-pill waves-effect btn-icon" title="Excluir" wire:click="removeEmergencyContact({{ $index }})"><i class="icon-base ti tabler-trash icon-22px"></i></button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        @if(empty($emergencyContacts))
+                                        <tr>
+                                            <td class="text-center" colspan="4" style="padding: 30px">Nenhum contato de emergência cadastrado.</td>
+                                        </tr>
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr class="mt-4 pb-4">
+                            <div class="card-header header-elements mb-4">
+                                <h5 class="mb-0 me-2">Observações</h5>
+                                <div class="card-header-elements ms-auto"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea class="form-control" id="" name="" rows="8"></textarea>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- Restore other tabs as Static Layouts -->
                         <div class="tab-pane fade" id="tab-enderecos" role="tabpanel">
-                             <p>Conteúdo da aba Endereços (Não implementado nesta fase)</p>
+                             <div class="card-header header-elements mb-4">
+                                <h5 class="mb-0 me-2">Endereços no Japão</h5>
+                                <div class="card-header-elements ms-auto">
+                                    <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                        <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card shadow-none border rounded">
+                                        <div class="card-body text-center">
+                                            <p class="card-text py-10">Nenhum endereço cadastrado.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                          <div class="tab-pane fade" id="tab-servicos" role="tabpanel">
-                             <p>Conteúdo da aba Serviços (Não implementado nesta fase)</p>
+                             <h5>Serviços</h5>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card shadow-none border rounded">
+                                        <div class="card-body text-center">
+                                            <p class="card-text py-10">Nenhum registro de serviço requerido.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                          <div class="tab-pane fade" id="tab-saldos" role="tabpanel">
-                             <p>Conteúdo da aba Saldo (Não implementado nesta fase)</p>
+                            <div class="card-header header-elements mb-4">
+                                <h5 class="mb-0 me-2">Extrato de Pagamentos</h5>
+                                <div class="card-header-elements ms-auto">
+                                    <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                        <span class="icon-base ti tabler-printer icon-xs me-1"></span>Imprimir
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card shadow-none border rounded">
+                                        <div class="card-body text-center">
+                                            <p class="card-text py-10">Nenhum registro de pagamentos.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                          <div class="tab-pane fade" id="tab-anotacoes" role="tabpanel">
-                             <p>Conteúdo da aba Anotações (Não implementado nesta fase)</p>
+                             <div class="card-header header-elements mb-4">
+                                <h5 class="mb-0 me-2">Anotações</h5>
+                                <div class="card-header-elements ms-auto">
+                                    <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+                                        <span class="icon-base ti tabler-plus icon-xs me-1"></span>Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card shadow-none border rounded">
+                                        <div class="card-body text-center">
+                                            <p class="card-text py-10">Nenhuma anotação incluída.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                      <div class="d-flex justify-content-between pt-6">

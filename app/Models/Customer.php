@@ -22,10 +22,24 @@ class Customer extends Model
         'cidade_nascimento_br_id',
         'cidade_nascimento_jp_id',
         'cidade_nascimento_outro',
+        'identidade_tipo',
+        'identidade_numero',
+        'identidade_orgao',
+        'identidade_emissao',
+        'titulo_eleitor',
+        'titulo_secao',
+        'titulo_zona',
+        'titulo_local',
+        'zayriu_card',
+        'habilitacao_japonesa',
+        'passaporte_estrangeiro',
+        'passaporte_estrangeiro_validade',
     ];
 
     protected $casts = [
         'nascimento' => 'date',
+        'identidade_emissao' => 'date',
+        'passaporte_estrangeiro_validade' => 'date',
     ];
 
     protected static function booted()
@@ -94,5 +108,20 @@ class Customer extends Model
     public function cidadeNascimentoJp()
     {
         return $this->belongsTo(JapanCity::class, 'cidade_nascimento_jp_id');
+    }
+
+    public function phones()
+    {
+        return $this->hasMany(CustomerPhone::class);
+    }
+
+    public function emails()
+    {
+        return $this->hasMany(CustomerEmail::class);
+    }
+
+    public function emergencyContacts()
+    {
+        return $this->hasMany(CustomerEmergencyContact::class);
     }
 }
