@@ -7,34 +7,44 @@
             </div>
             <div class="d-flex align-content-center flex-wrap gap-4">
                 <button type="button" class="btn btn-primary waves-effect waves-light" wire:click="create" data-bs-toggle="modal" data-bs-target="#linkModal">
-                    Nova publicação
+                    Adicionar Link
                 </button>
             </div>
         </div>
     </div>
 
     <div class="card mt-4">
-        <div class="table-responsive text-nowrap">
-            <table class="table">
+        <div class="card-header">
+            <div class="row justify-content-between">
+                <div class="d-md-flex justify-content-between align-items-center dt-layout-start col-md-auto mt-0">
+                    <h5 class="card-tile">Repositório de Links</h5>
+                </div>
+                <div class="d-md-flex justify-content-between align-items-center dt-layout-end col-md-auto mt-0">
+                </div>
+                </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive text-nowrap">
+            <table class="table table-bordered table-sm">
                 <thead>
-                    <tr>
-                        <th>Categoria</th>
+                    <tr class="bg-label-secondary">
                         <th>Descrição</th>
                         <th>Link</th>
+                        <th>Categoria</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @forelse($links as $item)
                         <tr>
-                            <td>{{ $item->category }}</td>
                             <td>{{ $item->description }}</td>
                             <td><a href="{{ $item->link }}" target="_blank">{{ $item->link }}</a></td>
+                            <td>{{ $item->category }}</td>
                             <td>
-                                <button class="btn btn-sm btn-icon btn-text-secondary rounded-pill waves-effect waves-light" wire:click="edit({{ $item->id }})" data-bs-toggle="modal" data-bs-target="#linkModal">
-                                    <i class="ti tabler-edit"></i>
+                                <button class="btn btn-text-secondary rounded-pill btn-icon" wire:click="edit({{ $item->id }})" data-bs-toggle="modal" data-bs-target="#linkModal">
+                                    <i class="icon-base ti tabler-edit"></i>
                                 </button>
-                                <button class="btn btn-sm btn-icon btn-text-danger rounded-pill waves-effect waves-light" wire:confirm="Tem certeza que deseja excluir este link?" wire:click="delete({{ $item->id }})">
+                                <button class="btn btn-text-secondary rounded-pill btn-icon" wire:confirm="Tem certeza que deseja excluir este link?" wire:click="delete({{ $item->id }})">
                                     <i class="ti tabler-trash"></i>
                                 </button>
                             </td>
@@ -46,6 +56,7 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
         </div>
     </div>
 
@@ -62,21 +73,21 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="category" class="form-label">Categoria</label>
-                                <input type="text" id="category" wire:model="category" class="form-control @error('category') is-invalid @enderror" placeholder="Ex: Geral">
+                                <input type="text" id="category" wire:model="category" class="form-control @error('category') is-invalid @enderror">
                                 @error('category') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="description" class="form-label">Descrição</label>
-                                <input type="text" id="description" wire:model="description" class="form-control @error('description') is-invalid @enderror" placeholder="Ex: Portal RH">
+                                <input type="text" id="description" wire:model="description" class="form-control @error('description') is-invalid @enderror">
                                 @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="link" class="form-label">Link</label>
-                                <input type="url" id="link" wire:model="link" class="form-control @error('link') is-invalid @enderror" placeholder="https://...">
+                                <input type="url" id="link" wire:model="link" class="form-control @error('link') is-invalid @enderror">
                                 @error('link') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                         </div>
@@ -98,8 +109,6 @@
                 if (modal) {
                     modal.hide();
                 }
-
-                // Force remove backdrop if it gets stuck
                 const backdrops = document.querySelectorAll('.modal-backdrop');
                 backdrops.forEach(backdrop => {
                     backdrop.remove();
@@ -108,7 +117,6 @@
                 document.body.style.overflow = '';
                 document.body.style.paddingRight = '';
             });
-
             Livewire.on('open-modal', () => {
                 const modalEl = document.getElementById('linkModal');
                 const modal = new bootstrap.Modal(modalEl);
